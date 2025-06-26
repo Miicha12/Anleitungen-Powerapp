@@ -126,7 +126,7 @@ Damit man eine Element in Powerapps einfügen kann, muss man im Sharepoint das E
 
 - Dafür gehst du auf der RC-CH.Workflow
 
-[Bild 1]: Anleitungen-Powerapp/img.png
+![Sharepoint-bild-1.png](src/main/recources/graphic/Sharepoint-bild-1.png)
 
 - Bei der gelben Markierung findest du alle Sharepoint-Listen, die du für deine App verwenden kannst.  
   > ***z. B.*** `RC-CH.Workflow` ist eine Liste, in der du deine Workflows speichern kannst.
