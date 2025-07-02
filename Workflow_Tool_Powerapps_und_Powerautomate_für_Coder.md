@@ -126,12 +126,52 @@ Damit man eine Element in Powerapps einfügen kann, muss man im Sharepoint das E
 
 - Dafür gehst du auf der RC-CH.Workflow
 
-![Sharepoint-bild-1.png](src/main/recources/graphic/Sharepoint-bild-1.png)
+![alt text](image.png)
 
 - Bei der gelben Markierung findest du alle Sharepoint-Listen, die du für deine App verwenden kannst.  
   > ***z. B.*** `RC-CH.Workflow` ist eine Liste, in der du deine Workflows speichern kannst.
-  > 
-> 
-> 
-> 
-> 
+
+![alt text](image-1.png)
+
+- Ganz rechts auf Add Column erstellt man eine Spalte nach Wunsch / Vorgabe. Danach wird dies gespeichert.
+
+![alt text](image-2.png)
+
+- Ganz wichtig: Auf der Poweapps-Seite muss du die Liste `refreshen`, da diese ergänzt wurde.
+
+![alt text](image-3.png)
+
+- Unter `Properties` &rarr; `Display` &rarr; `Edit fields` &rarr; `Add fields` findest du ein erstelltes Feld
+- Wichtig zu beachten ist, dass du unter Data Source die richtige Sharepoint Liste anwählst und auf den Screen in die Form (Quadrat mit Violetter Umrandung) anklickst.
+
+### Gängige Feldtypen in PowerApps (basierend auf der Benutzeroberfläche)
+
+PowerApps bietet verschiedene Steuerelemente für due Dateneingabe und Navigation. Hier sind due wichtigsten Typen und ihre Anwendungen:
+
+1. `Textfelder`
+   - Einzeiliges Textfeld `TextInput`: Zum Eingeben kurzer Texte wie "Projektname" oder "Bestellnummer".
+   - Mehrzeiliges Textfeld `TextArea`: Für längere Eingaben wie "Bemerkung zu Bestellung" oder "Notizen zum Kunden".
+
+2. `Auswahlfelder`
+   - Dropdown `DropDown` / Kombobox `ComboBox`: Ermöglicht die Auswahl einer Option aus einer Liste, <p>
+   > ***z.B.*** "Lieferantentyp" oder "Status".
+
+3. `Datumauswahl`
+   - Date Picker `DatePicker`: Auswahl eines Datums, <p>
+   > ***z.B.*** "Lieferdatum" oder "Projektstart"
+
+4. `Umschalter` für Ja/Nein-Entscheidungen
+   - Toggle `Toggle`: Schieberegler für Ein/Aus-Aktionen wie (Neuer Lieferant: `On/Off`)
+
+5. `Schaltflächen` für `Aktionen`
+   - Button `Button`: Führ eine aktion aus, <p>
+   > ***z.B*** "Bestellung erfassen" oder "Dokument öffnen"
+
+6. `Navigation` und `Aktionsleisten`
+   - Diese Steuerelemente dienen dazu, die Benutzer durch die App zu führen oder zusätzlliche Funktionen bereizusellen:
+     - `Navigationsleisten`: Ermöglichen den Wechsel zwischen verschiedenen Ansichten oder Seiten der App. <p> 
+     > ***z.B.*** Eine leiste am oberen Bildschirmrand mit `Startseite`, `Bestellungen` und `Einstellungen`.
+     - `Aktionsleiste`: Bieten Schnellzugriffe auf wichtige Funktionen. <p>
+     > ***z.B*** Ein `+` Symbol zum Hinzufügen neuer Daten oder ein `Anhang-Button`zum hochladen von Dokumenten.
+
+Diese Feldtypen sind essenziell für die Dateneingabe und Steuerung in PowerApps. Eine sinnvolle Platzierung und Verwendung verbessert die Benutzerfreundlichkeit erheblich.

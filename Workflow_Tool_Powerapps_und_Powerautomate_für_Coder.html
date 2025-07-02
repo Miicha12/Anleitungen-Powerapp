@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Workflow Tool Powerapps und Powerautomate für Coder</title>
+</head>
+<body>
+
+<h1>Workflow Tool Powerapps und Powerautomate für Coder</h1>
+
+<h2>Dokumentation</h2>
+
+<h2>Inhalt:</h2>
+<ol>
+    <li>Grundlagen Powerapps</li>
+    <li>Grundlagen des Einfügens von Elementen</li>
+</ol>
+
+<h2 id="grundlagen-powerapps">1. Grundlagen Powerapps</h2>
+<p>In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die Entwicklung von Apps in Powerapps erforderlich sind.</p>
+
+<h3>Grundfunktionen</h3>
+<ul>
+    <li><code>If()</code>: Wenn etwas zutrifft, dann mach dies, sonst mach das.<br>
+        &gt; <strong>z. B.</strong> Wenn Alter über 18, dann "Erwachsen", sonst "Kind"
+    </li>
+    <li><code>Switch()</code>: Für mehrere Bedingungen, ähnlich wie <code>If()</code>, aber für mehrere Fälle.<br>
+        &gt; <strong>z. B.</strong> Wenn Alter 0–12, dann "Kind"; 13–19, dann "Teenager"; sonst "Erwachsen"
+    </li>
+    <li><code>Notify()</code>: Zeigt eine kleine Nachricht in der App an.<br>
+        &gt; <strong>z. B.</strong> "Daten erfolgreich gespeichert"
+    </li>
+    <li><code>Navigate()</code>: Navigiert zu einem anderen Bildschirm in der App.<br>
+        &gt; <strong>z. B.</strong> <code>Navigate(Screen2, ScreenTransition.Fade)</code>
+    </li>
+    <li><code>Back()</code>: Geht zum vorherigen Bildschirm zurück.<br>
+        &gt; <strong>z. B.</strong> <code>Back()</code>
+    </li>
+    <li><code>Exit()</code>: Beendet die App.<br>
+        &gt; <strong>z. B.</strong> <code>Exit()</code>
+    </li>
+</ul>
+
+<h3>Textfunktionen</h3>
+<ul>
+    <li><code>Text()</code>: Formatiert eine Zahl oder ein Datum als Text.<br>
+        &gt; <strong>z. B.</strong> <code>Text(1234.56, "[$-de-DE]#,##0.00")</code>
+    </li>
+    <li><code>Value()</code>: Konvertiert Text in eine Zahl.<br>
+        &gt; <strong>z. B.</strong> <code>Value("1234.56")</code>
+    </li>
+    <li><code>Len()</code>: Gibt die Länge eines Textes zurück.<br>
+        &gt; <strong>z. B.</strong> <code>Len("Hallo")</code> gibt 5 zurück.
+    </li>
+    <li><code>Left()</code>, <code>Right()</code>, <code>Mid()</code>: Extrahieren Teile eines Textes.<br>
+        &gt; <strong>z. B.</strong> <code>Left("Hallo", 2)</code> gibt "Ha", <code>Right("Hallo", 2)</code> gibt "lo", <code>Mid("Hallo", 2, 3)</code> gibt "all"
+    </li>
+    <li><code>Upper()</code>, <code>Lower()</code>: Wandeln Text in Groß- oder Kleinschreibung um.<br>
+        &gt; <strong>z. B.</strong> <code>Upper("Hallo")</code> gibt "HALLO", <code>Lower("HALLO")</code> gibt "hallo"
+    </li>
+    <li><code>Trim()</code>: Entfernt Leerzeichen am Anfang und Ende eines Textes.<br>
+        &gt; <strong>z. B.</strong> <code>Trim("  Hallo  ")</code> gibt "Hallo"
+    </li>
+</ul>
+
+<h3>Mathematikfunktionen</h3>
+<ul>
+    <li><code>Round()</code>: Rundet eine Zahl auf eine bestimmte Anzahl von Dezimalstellen.<br>
+        &gt; <strong>z. B.</strong> <code>Round(123.456, 2)</code> gibt 123.46 zurück.
+    </li>
+    <li><code>Abs()</code>: Gibt den Absolutwert einer Zahl zurück.<br>
+        &gt; <strong>z. B.</strong> <code>Abs(-5)</code> gibt 5 zurück.
+    </li>
+    <li><code>Sqrt()</code>: Gibt die Quadratwurzel einer Zahl zurück.<br>
+        &gt; <strong>z. B.</strong> <code>Sqrt(16)</code> gibt 4 zurück.
+    </li>
+    <li><code>Rand()</code>: Gibt eine Zufallszahl zwischen 0 und 1 zurück.<br>
+        &gt; <strong>z. B.</strong> <code>Rand()</code> gibt z. B. 0.123456 zurück.
+    </li>
+    <li><code>Mod()</code>: Gibt den Rest einer Division zurück.<br>
+        &gt; <strong>z. B.</strong> <code>Mod(10, 3)</code> gibt 1 zurück.
+    </li>
+</ul>
+
+<h3>Logikfunktionen</h3>
+<ul>
+    <li><code>And()</code>, <code>Or()</code>, <code>Not()</code>: Logische Operatoren für Bedingungen.<br>
+        &gt; <strong>z. B.</strong> <code>If(And(Age > 18, IsStudent), "Erwachsen und Student", "Nicht erwachsen oder kein Student")</code>
+    </li>
+    <li><code>IsBlank()</code>: Überprüft, ob ein Wert leer ist.<br>
+        &gt; <strong>z. B.</strong> <code>If(IsBlank(TextInput1.Text), "Feld ist leer", "Feld hat Inhalt")</code>
+    </li>
+    <li><code>IsEmpty()</code>: Überprüft, ob eine Sammlung, Liste oder Tabelle leer ist.<br>
+        &gt; <strong>z. B.</strong> <code>If(IsEmpty(MyCollection), "Sammlung ist leer", "Sammlung hat Elemente")</code>
+    </li>
+    <li><code>IsNumeric()</code>: Überprüft, ob ein Wert numerisch ist.<br>
+        &gt; <strong>z. B.</strong> <code>If(IsNumeric(TextInput1.Text), "Ist eine Zahl", "Ist keine Zahl")</code>
+    </li>
+    <li><code>IsError()</code>: Überprüft, ob ein Ausdruck einen Fehler zurückgibt.<br>
+        &gt; <strong>z. B.</strong> <code>If(IsError(LookUp(MyTable, ID = 1)), "Fehler beim Suchen", "Suche erfolgreich")</code>
+    </li>
+</ul>
+
+<h3>Datum- und Zeitfunktionen</h3>
+<ul>
+    <li><code>Now()</code>: Gibt das aktuelle Datum und die aktuelle Uhrzeit zurück.<br>
+        &gt; <strong>z. B.</strong> <code>Now()</code> gibt z. B. "2023-10-01 12:34:56" zurück.
+    </li>
+    <li><code>Today()</code>: Gibt das aktuelle Datum zurück (ohne Uhrzeit).<br>
+        &gt; <strong>z. B.</strong> <code>Today()</code> gibt "2023-10-01" zurück.
+    </li>
+    <li><code>Date()</code>: Erstellt ein Datum aus Jahr, Monat und Tag.<br>
+        &gt; <strong>z. B.</strong> <code>Date(2023, 10, 1)</code> gibt "2023-10-01" zurück.
+    </li>
+    <li><code>DateAdd()</code>: Fügt einem Datum eine bestimmte Anzahl von Tagen, Monaten oder Jahren hinzu.<br>
+        &gt; <strong>z. B.</strong> <code>DateAdd(Today(), 7, Days)</code> gibt das Datum in 7 Tagen zurück.
+    </li>
+    <li><code>DateDiff()</code>: Berechnet die Differenz zwischen zwei Daten in Tagen, Monaten oder Jahren.<br>
+        &gt; <strong>z. B.</strong> <code>DateDiff(Today(), Date(2023, 12, 31), Days)</code> gibt die Anzahl der Tage bis zum 31. Dezember 2023 zurück.
+    </li>
+    <li><code>Year()</code>, <code>Month()</code>, <code>Day()</code>: Extrahieren Jahr, Monat oder Tag aus einem Datum.<br>
+        &gt; <strong>z. B.</strong> <code>Year(Today())</code>, <code>Month(Today())</code>, <code>Day(Today())</code>
+    </li>
+    <li><code>Weekday()</code>: Gibt den Wochentag eines Datums zurück (1 = Sonntag, 2 = Montag, …).<br>
+        &gt; <strong>z. B.</strong> <code>Weekday(Today())</code>
+    </li>
+    <li><code>FormatDateTime()</code>: Formatiert ein Datum als Text.<br>
+        &gt; <strong>z. B.</strong> <code>FormatDateTime(Today(), DateTimeFormat.LongDate)</code>
+    </li>
+</ul>
+
+<h3>Listen und Daten</h3>
+<ul>
+    <li><code>Collect()</code>: Fügt Elemente zu einer Sammlung hinzu.<br>
+        &gt; <strong>z. B.</strong> <code>Collect(MyCollection, {Name: "Max", Age: 30})</code>
+    </li>
+    <li><code>Clear()</code>: Löscht alle Elemente aus einer Sammlung.<br>
+        &gt; <strong>z. B.</strong> <code>Clear(MyCollection)</code>
+    </li>
+    <li><code>ClearCollect()</code>: Löscht eine Sammlung und fügt dann neue Elemente hinzu.<br>
+        &gt; <strong>z. B.</strong> <code>ClearCollect(MyCollection, {Name: "Max", Age: 30})</code>
+    </li>
+    <li><code>Remove()</code>: Entfernt ein bestimmtes Element aus einer Sammlung.<br>
+        &gt; <strong>z. B.</strong> <code>Remove(MyCollection, {Name: "Max", Age: 30})</code>
+    </li>
+    <li><code>RemoveIf()</code>: Entfernt Elemente aus einer Sammlung, die eine bestimmte Bedingung erfüllen.<br>
+        &gt; <strong>z. B.</strong> <code>RemoveIf(MyCollection, Age < 18)</code>
+    </li>
+    <li><code>Patch()</code>: Aktualisiert oder fügt ein Element in einer Sammlung hinzu.<br>
+        &gt; <strong>z. B.</strong> <code>Patch(MyCollection, {Name: "Max"}, {Age: 31})</code>
+    </li>
+    <li><code>Sort()</code>: Sortiert eine Sammlung nach einem bestimmten Feld.<br>
+        &gt; <strong>z. B.</strong> <code>Sort(MyCollection, Age, Ascending)</code>
+    </li>
+    <li><code>SortByColumns()</code>: Sortiert eine Sammlung nach mehreren Spalten.<br>
+        &gt; <strong>z. B.</strong> <code>SortByColumns(MyCollection, "Name", Ascending, "Age", Descending)</code>
+    </li>
+    <li><code>Filter()</code>: Filtert eine Sammlung nach einer Bedingung.<br>
+        &gt; <strong>z. B.</strong> <code>Filter(MyCollection, Age > 18)</code>
+    </li>
+</ul>
+
+<h3>Suchen und Filtern</h3>
+<ul>
+    <li><code>LookUp()</code>: Sucht ein einzelnes Element in einer Sammlung.<br>
+        &gt; <strong>z. B.</strong> <code>LookUp(MyCollection, Name = "Max")</code>
+    </li>
+    <li><code>Search()</code>: Sucht nach einem Text in einer Sammlung.<br>
+        &gt; <strong>z. B.</strong> <code>Search(MyCollection, "Max", "Name")</code>
+    </li>
+    <li><code>First()</code>, <code>Last()</code>: Gibt das erste oder letzte Element einer Sammlung zurück.<br>
+        &gt; <strong>z. B.</strong> <code>First(MyCollection)</code>, <code>Last(MyCollection)</code>
+    </li>
+    <li><code>FirstN()</code>, <code>LastN()</code>: Gibt die ersten oder letzten N Elemente einer Sammlung zurück.<br>
+        &gt; <strong>z. B.</strong> <code>FirstN(MyCollection, 3)</code>, <code>LastN(MyCollection, 2)</code>
+    </li>
+    <li><code>Distinct()</code>: Gibt eine Sammlung von eindeutigen Werten zurück.<br>
+        &gt; <strong>z. B.</strong> <code>Distinct(MyCollection, Name)</code>
+    </li>
+    <li><code>StartsWith()</code>, <code>EndsWith()</code>: Überprüfen Präfix/Suffix.<br>
+        &gt; <strong>z. B.</strong> <code>StartsWith("Hallo", "Ha")</code>, <code>EndsWith("Hallo", "lo")</code>
+    </li>
+</ul>
+
+<h2 id="einfügen-von-elementen">2. Grundlagen des Einfügens von Elementen</h2>
+<p>In diesem Kapitel werden die Grundlagen des Einfügens von Elementen in Powerapps erläutert, einschließlich der Verwendung von Steuerelementen und deren Eigenschaften.</p>
+<p>Damit man ein Element in Powerapps einfügen kann, muss man im SharePoint das Element speichern. Für Powerapps ist SharePoint eine Datenbank und dort wird alles gespeichert.</p>
+
+<ul>
+    <li>Dafür gehst du auf der <code>RC-CH.Workflow</code></li>
+</ul>
+<p><img src="image.png" alt="alt text"></p>
+
+<ul>
+    <li>Bei der gelben Markierung findest du alle SharePoint-Listen, die du für deine App verwenden kannst.<br>
+        &gt; <strong>z. B.</strong> <code>RC-CH.Workflow</code> ist eine Liste, in der du deine Workflows speichern kannst.
+    </li>
+</ul>
+<p><img src="image-1.png" alt="Screenshot SharePoint-Listen"></p>
+
+<ul>
+    <li>Ganz rechts auf <em>Add Column</em> erstellst du eine Spalte nach Wunsch / Vorgabe. Danach wird dies gespeichert.</li>
+</ul>
+<p><img src="image-2.png" alt="Add Column"></p>
+
+<ul>
+    <li>Ganz wichtig: Auf der Powerapps-Seite musst du die Liste <em>refreshen</em>, da diese ergänzt wurde.</li>
+</ul>
+<p><img src="image-3.png" alt="Refresh Liste"></p>
+
+<ul>
+    <li>Unter <em>Properties → Display → Edit fields → Add fields</em> findest du ein erstelltes Feld.</li>
+    <li>Wichtig zu beachten ist, dass du unter <em>Data Source</em> die richtige SharePoint-Liste auswählst und auf den Screen in die Form (Quadrat mit violetter Umrandung) klickst.</li>
+</ul>
+
+<h3>Gängige Feldtypen in PowerApps (basierend auf der Benutzeroberfläche)</h3>
+<ol>
+    <li><strong>Textfelder</strong><br>
+        <ul>
+            <li>Einzeiliges Textfeld <code>TextInput</code>: Zum Eingeben kurzer Texte.</li>
+            <li>Mehrzeiliges Textfeld <code>TextArea</code>: Für längere Eingaben.</li>
+        </ul>
+    </li>
+    <li><strong>Auswahlfelder</strong><br>
+        <ul>
+            <li>Dropdown <code>DropDown</code> / Kombobox <code>ComboBox</code>: Auswahl einer Option aus einer Liste.<br>
+                &gt; <strong>z. B.</strong> "Lieferantentyp" oder "Status"
+            </li>
+        </ul>
+    </li>
+    <li><strong>Datumauswahl</strong><br>
+        <ul>
+            <li>Date Picker <code>DatePicker</code>: Auswahl eines Datums.<br>
+                &gt; <strong>z. B.</strong> "Lieferdatum" oder "Projektstart"
+            </li>
+        </ul>
+    </li>
+    <li><strong>Umschalter für Ja/Nein</strong><br>
+        <ul>
+            <li>Toggle <code>Toggle</code>: Schieberegler für Ein/Aus-Aktionen.</li>
+        </ul>
+    </li>
+    <li><strong>Schaltflächen für Aktionen</strong><br>
+        <ul>
+            <li>Button <code>Button</code>: Führt eine Aktion aus.<br>
+                &gt; <strong>z. B.</strong> "Bestellung erfassen" oder "Dokument öffnen"
+            </li>
+        </ul>
+    </li>
+    <li><strong>Navigation und Aktionsleisten</strong><br>
+        <ul>
+            <li>Navigationsleisten: Wechsel zwischen Ansichten oder Seiten.<br>
+                &gt; <strong>z. B.</strong> Leiste mit <em>Startseite, Bestellungen, Einstellungen</em>
+            </li>
+            <li>Aktionsleiste: Schnellzugriff auf Funktionen.<br>
+                &gt; <strong>z. B.</strong> <code>+</code> zum Hinzufügen neuer Daten oder Anhang-Button zum Hochladen</li>
+        </ul>
+    </li>
+</ol>
+
+</body>
+</html>
