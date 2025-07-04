@@ -1,5 +1,5 @@
-# Workflow Tool Powerapps für User
-## Dokumentation
+# **Workflow Tool Powerapps für User**
+## **Dokumentation**
 
 ## Inhalt:
 
@@ -26,6 +26,27 @@ Die Siemens-Energy AG nutzt PowerApps für ihren Bestellworkflow. Dort kann jede
 ![img_7.png](img_7.png)
 
 Anhand von der Legende kann man die verschiedenen Icons und deren Bedeutung erkennen. <p> Diese Icons sind auf den verschiedenen Screens zu finden und helfen bei der Navigation.
+
+![img_16.png](img_16.png)
+Erklärung:
+
+- `WF angelegt`: Noch nicht zur Auftragserfassung gesendet
+- `WF zur Bearbeitung`: In der Auftragserfassung
+- `AEB gesendet`: Kundenauftrag im SAP angelegt
+- `AB gesendet`: Lieferterminbestätigung erhalten
+- `Abgeschlossen`: Fakturadatum erreicht, Weiterleitung zur Verrechnung
+- `Faturierung`: Beim CPM zur Verrechnung
+- `Archivierung`: Verrechnet, bereit zur Archivierung
+
+![img_17.png](img_17.png)
+Erklärung:
+
+- `Materialbestellung angelegt`: Noch nicht zur Auftragserfassung gesendet
+- `Workflow zur Bearbeitung`: In der Auftragserfassung
+- `Bestellung angelegt`: Noch nicht an den Lieferanten gesendet
+- `Bestellung an den Lieferanten gesendet`
+- `Lieferantenbestätigung erhalten`: Lieferantenreferenz, Liefertermin
+
 ### 3. StartScreen
 
 ![img.png](img.png)
@@ -79,8 +100,7 @@ Auf diesem Screen sieht man wie es aussieht, wenn eine Bemerkung bereits erfasst
 
 ![img_12.png](img_12.png)
 
-Im `Materialbestellung-Screen` werden die Liefertermine erfasst. Auch hier ist es notwendig, dass....
-Über diese Maske kann man ebenfalls den `Bemerkung-Screen` erreichen und dort die Bemerkungen zu der Bestellung erfassen.
+Im `Materialbestellung-Screen` werden die Bestellungen erfasst. Man trägt die Daten ein sowie auch die Termine wie beispielsweise `Lieferbestätigung bis` oder `PO Datum`. Damit hat man Deadlines. Ebenfalls kann man Anhänge oder Bemerkungen  hinzufügen <Bei Bemerkung erfasst man diese im `Bemerkung-Screen`>
 
 ### 9. Archiv-Screen
 
