@@ -28,6 +28,7 @@ Die Siemens-Energy AG nutzt PowerApps für ihren Bestellworkflow. Dort kann jede
 Anhand von der Legende kann man die verschiedenen Icons und deren Bedeutung erkennen. <p> Diese Icons sind auf den verschiedenen Screens zu finden und helfen bei der Navigation.
 
 ![img_16.png](img_16.png)
+
 Erklärung:
 
 - `WF angelegt`: Noch nicht zur Auftragserfassung gesendet
@@ -39,6 +40,7 @@ Erklärung:
 - `Archivierung`: Verrechnet, bereit zur Archivierung
 
 ![img_17.png](img_17.png)
+
 Erklärung:
 
 - `Materialbestellung angelegt`: Noch nicht zur Auftragserfassung gesendet
