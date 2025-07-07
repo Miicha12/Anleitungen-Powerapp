@@ -172,7 +172,7 @@ PowerApps bietet verschiedene Steuerelemente für due Dateneingabe und Navigatio
    - Diese Steuerelemente dienen dazu, die Benutzer durch die App zu führen oder zusätzlliche Funktionen bereizusellen:
      - `Navigationsleisten`: Ermöglichen den Wechsel zwischen verschiedenen Ansichten oder Seiten der App. <p> 
      > ***z.B.*** Eine leiste am oberen Bildschirmrand mit `Startseite`, `Bestellungen` und `Einstellungen`.
-     - `Aktionsleiste`: Bieten Schnellzugriffe auf wichtige Funktionen. <p>
+     - `Aktionsleiste`: Bieten Schnellzugriffe auf wichtige Funktionen.
      > ***z.B*** Ein `+` Symbol zum Hinzufügen neuer Daten oder ein `Anhang-Button`zum hochladen von Dokumenten.
 
 Diese Feldtypen sind essenziell für die Dateneingabe und Steuerung in PowerApps. Eine sinnvolle Platzierung und Verwendung verbessert die Benutzerfreundlichkeit erheblich.
@@ -208,22 +208,21 @@ So kann man einfach steuern, **wie ein `Button` aussieht und wofür er zuständi
 - **`Padding`**: Fügt Abstand um das Element herum hinzu.  
   > ***z. B.*** `Padding = 10` für einen Abstand von 10 Pixeln auf allen Seiten.
   - **`Allignment`**: Legt die Ausrichtung des Textes im Element fest.  
-  >   ***z. B.*** `Alignment = Center` für zentrierten Text. `Alignment = Left` für linksbündigen Text. `Alignment = Right` für rechtsbündigen Text. `Alignment = Justify` für Blocksatz. `Alignment = Top` für Text am oberen Rand. `Alignment = Bottom` für Text am unteren Rand.
+  >   ***z. B.*** `Alignment = Center` für zentrierten Text. <p></p> `Alignment = Left` für linksbündigen Text. <p></p> `Alignment = Right` für rechtsbündigen Text. <p></p> `Alignment = Justify` für Blocksatz. <p></p> `Alignment = Top` für Text am oberen Rand. <p></p> `Alignment = Bottom` für Text am unteren Rand.
 - **`VerticalAlign`**: Bestimmt die vertikale Ausrichtung des Textes im Element.  
-  > ***z. B.*** `VerticalAlign = Top` für Text am oberen Rand, `VerticalAlign = Bottom` für Text am unteren Rand.
+  > ***z. B.*** `VerticalAlign = Top` für Text am oberen Rand, <p></p> `VerticalAlign = Bottom` für Text am unteren Rand.
 - **`Font, FontSize, FontWeight`**: Legt die Schriftart, Schriftgrösse und Schriftstärke fest.  
-  > ***z. B.*** `Font = "Arial"`, `FontSize = 14`, `FontWeight = Bold` für eine fette Schriftart in Arial mit einer Grösse von 14.
+  > ***z. B.*** `Font = "Arial"`, `FontSize = 14`, <p></p> `FontWeight = Bold` für eine fette Schriftart in Arial mit einer Grösse von 14.
 - **`Color`**: Bestimmt die Textfarbe des Elements.  
   > ***z. B.*** `Color = RGBA(0, 0, 0, 1)` für schwarzen Text.
   > [Color Enumeration](https://learn.microsoft.com/en-us/power-platform/power-fx/reference/function-colors)
 - **`Fill`**: Legt die Hintergrundfarbe des Elements fest.  
   > ***z. B.*** `Fill = RGBA(255, 255, 255, 1)` für einen weissen Hintergrund.
 - **`BorderColor` / `BorderThikness` / `Radius`**: Bestimmt die Farbe des Rahmens, die Dicke des Rahmens und die Eckenradien des Elements.  
-  > ***z. B.*** `BorderColor = RGBA(0, 0, 0, 1)`, `BorderThickness = 2`, `Radius = 5` für einen schwarzen Rahmen mit einer Dicke von 2 Pixeln und abgerundeten Ecken von 5 Pixeln.
+  > ***z. B.*** `BorderColor = RGBA(0, 0, 0, 1)`, <p></p> `BorderThickness = 2`, <p></p> `Radius = 5` für einen schwarzen Rahmen mit einer Dicke von 2 Pixeln und abgerundeten Ecken von 5 Pixeln.
 - **`HoverFill` / `PressedFill`/ `DisabledFill`**: Legt die Hintergrundfarbe des Elements fest, wenn der Mauszeiger darüber schwebt, wenn es gedrückt wird oder wenn es deaktiviert ist.  
   > ***z. B.*** `HoverFill = RGBA(200, 200, 200, 1)` für eine hellgraue Farbe beim Hover-Effekt. <p></p>
-  > ***z. B.*** `PressedFill = RGBA(150, 150, 150, 1)` für eine dunklere Farbe beim Drücken des Elements.
+  > ***z. B.*** `PressedFill = RGBA(150, 150, 150, 1)` für eine dunklere Farbe beim Drücken des Elements. <p></p>
   > ***z. B.*** `DisabledFill = RGBA(220, 220, 220, 1)` für eine hellere Farbe, wenn das Element deaktiviert ist.
 
 ### **Advanced-Eigenschaften**
-
