@@ -221,7 +221,7 @@ So kann man einfach steuern, **wie ein `Button` aussieht und wofür er zuständi
 - **`BorderColor` / `BorderThikness` / `Radius`**: Bestimmt die Farbe des Rahmens, die Dicke des Rahmens und die Eckenradien des Elements.  
   > ***z. B.*** `BorderColor = RGBA(0, 0, 0, 1)`, `BorderThickness = 2`, `Radius = 5` für einen schwarzen Rahmen mit einer Dicke von 2 Pixeln und abgerundeten Ecken von 5 Pixeln.
 - **`HoverFill` / `PressedFill`/ `DisabledFill`**: Legt die Hintergrundfarbe des Elements fest, wenn der Mauszeiger darüber schwebt, wenn es gedrückt wird oder wenn es deaktiviert ist.  
-  > ***z. B.*** `HoverFill = RGBA(200, 200, 200, 1)` für eine hellgraue Farbe beim Hover-Effekt.
+  > ***z. B.*** `HoverFill = RGBA(200, 200, 200, 1)` für eine hellgraue Farbe beim Hover-Effekt. <p></p>
   > ***z. B.*** `PressedFill = RGBA(150, 150, 150, 1)` für eine dunklere Farbe beim Drücken des Elements.
   > ***z. B.*** `DisabledFill = RGBA(220, 220, 220, 1)` für eine hellere Farbe, wenn das Element deaktiviert ist.
 
