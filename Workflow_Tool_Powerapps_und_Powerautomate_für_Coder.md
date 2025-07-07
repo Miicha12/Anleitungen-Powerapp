@@ -5,6 +5,9 @@
 1. Grundlagen Powerapps
 2. Grundlagen des Einfpgens von Elementen
 3. Legende von Properties
+4. App und Start-Screen
+5. Home-Screen
+6. Auftrag-Screen
 
 
 ## **1. Grundlagen Powerapps**
@@ -311,4 +314,195 @@ So kann man einfach steuern, **wie ein `Button` aussieht und wofür er zuständi
 - **`Visible`**: Legt fest, ob das Element sichtbar ist oder nicht.  
   > ***z. B.*** `Visible = true` für sichtbares Element, <p></p> `Visible = false` für unsichtbares Element.
 
+## **4. App und Start-Screen**
+
+![img_19.png](img_19.png)
+
+App und Start-Screen zeigen den gleichen Screen an.
+
+![img_20.png](img_20.png)
+
+Bei App unter `OnStart` befindet sich der Code, der beim Starten der App ausgeführt:
+
+```powerapps
+Concurrent(
+  Set(gblLinkID, Value(Param("varFormDataID"))),
+  Set(gblScreenID, Value(Param("ScreenID"))),
+  Set(gblAdminUserBool, "gernold.heyer" in User().Email || "thivjan.tharmakularajah" in User().Email || "lilian.reimer" in User().Email || "michaela.ciardo" in User().Email || "powerappadmin.ch" in User().Email),
+  ClearCollect(colLieferantData, AddColumns(LieferantenList, appLiefKombo, Concatenate(Title, " | ", If(!IsBlank('ORG ID '), Concatenate('ORG ID ', " | ")), 'Name 1', " | ", If(!IsBlank('Name 2'), Concatenate('Name 2', " | ")), Ort)))
+);
+Switch(gblScreenID,
+  1, Set(gblAuftragRecord, LookUp(Neuer_Auftrag, ID = gblLinkID)),
+  2, Set(gblAuftragRecord, LookUp(Neuer_Auftrag, ID = gblLinkID)),
+  3, Set(gblBestellungRecord, LookUp(MaterialBst, ID = gblLinkID)); Set(gblAuftragRecord, LookUp(Neuer_Auftrag, ID = gblBestellungRecord.MatRefID)),
+  4, Set(gblAuftragRecord, LookUp(Neuer_Auftrag, ID = gblLinkID)),
+  5, Set(gblBemerkungRecord, LookUp('Bemerkung Projekt', ID = gblLinkID)); Set(gblAuftragRecord, LookUp(Neuer_Auftrag, ID = gblBemerkungRecord.ProjektRefID)); Set(gblBestellungRecord, LookUp(MaterialBst, ID = gblBemerkungRecord.MaterialRefID)); ViewForm(bemerkungsForm),
+  6, Set(gblTransportRecord, LookUp(Transport, ID = gblLinkID)); Set(gblAuftragRecord, LookUp(Neuer_Auftrag, ID = gblTransportRecord.AuftragsReferenzID))
+)
+```
+Beim Start der App werden zunächst globale Werte gesetzt, die über die `URL` als Parameter übergeben wurden, wie **z.B.** die `ID` eines bestimmten Datensatzes `gblLinkID` und die gewünschte Zielseite `gblScreenID`. `gbl` steht für globale Variable und diese Variablen werden verwendet, um Werte App weit verfügbar zu machen. Ein Record **z.B.** `gblBemerkungRecord` ist ein einzelner Datensatz mit Feldern **z.B** ein aktiver `Auftrag`, `Kunde` oder `Artikel`, den man in der App anzeigen, bearbeiten oder speichern kann. <p></p>
+Gleichzeitig wird geprüft, ob der aktuell angemeldete Benutzer ein Administrator ist, indem dessen E-Mail-Adresse im Code abgeglichen wird. Diese Liste kann bei Bedarf erweitert oder angepasst werden, etwa wenn neue Werkstudenten dazukommen. <p></p>
+Parallel dazu werden Listen aus `SharePoint` geladen und in lokalen `Collections` gespeichert, die später in `Dropdowns` oder `Formularen` verwendet werden. Anschliessend wird anhand der übergebenen `ScreenID` entschieden, welcher Datensatz geladen werden soll. Bei einem `Auftrag` wird der zugehörige Eintrag direkt geladen, bei `Bestellungen` oder `Bemerkungen` werden zusätzlich verknüpfte Aufträge und gegebenenfalls weitere Informationen ermittelt und gespeichert. So stellt die App sicher, dass beim Öffnen sofort die richtigen Inhalte und Formulare angezeigt werden passend zum Kontext des Links.
+
+### **`Buttons` vom Start-Screen**
+
+Die Codeblöcke sind unter dem `OnSelect` zu finden. `OnSelect` ist eine Eigenschaft in PowerApps, die bestimmt, **was passiert, wenn man auf ein Steuerelement klickt** **z.B.** auf einen `Button`, ein `Icon` oder ein `Bild`.
+ 
+![img_21.png](img_21.png)
+
+```powerapps
+Set(
+    gblAuftragRecord,
+    Blank()
+);
+ResetForm(auftragForm);
+NewForm(auftragForm);
+Navigate(
+    AuftragScreen)
+```
+
+Das Formular wird geleert, zurückgesetzt und in den `Neu erstellen`-Modus versetzt. Danach wechselt die App direkt zur Auftragserfassung. So kann ein neuer Auftrag sauber und ohne alte Daten eingegeben werden.
+
+### **Button `Übersicht`**
+
+![img_22.png](img_22.png)
+
+```powerapps
+Refresh(Neuer_Auftrag);
+Refresh(MaterialBst);
+Refresh(Kundenbestellungen);
+Refresh('Bemerkung Projekt');
+Refresh(Lieferantenanhaenge);
+Refresh(MaterialPOS);
+ 
+Navigate(HomeScreen)
+```
+
+Bevor die App zur Startseite wechselt, werden alle relevanten SharePoint-Listen aktualisiert wie beispielsweise etwa Aufträge, Bestellungen oder Bemerkungen. Dadurch wird sichergestellt, dass der Nutzer beim Zurückkehren auf dem neuesten Stand arbeitet und keine veralteten Daten sieht. Erst danach springt die App zur Startseite, damit alles frisch geladen ist.
+
+### **Button `Archiv`**
+
+![img_23.png](img_23.png)
+
+```powerapps
+Navigate(ArchivScreen)
+```
+
+Mit diesem Button landet man im Archivbereich `ArchivScreen`
+
+## **5. Home-Screen**
+
+![img_24.png](img_24.png)
+
+### **`Dropdown`-Menü Aufbau:**
+
+Um aufzuzeigen, wie das `Dropdown`-Menü funktioniert, nutzen wir das Beispiel einein Auftragsstatus zu filtern:
+
+![img_25.png](img_25.png)
+
+![img_26.png](img_26.png)
+
+```powerapps
+ForAll(Distinct(colAuftragData, Projektleiter), {Result: ThisRecord.Value})
+```
+
+Das Dropdown zeigt automatisch alle **eindeutigen** Projektleiter aus der Collection `colAuftragData` an. Dabei sorgt `Distinct` dafür, dass jeder Name nur einmal vorkommt doppelte werden entfernt. Mit `ForAll` wird dann aus jedem Namen ein eigener Eintrag fürs `Dropdown` erstellt. So kann man später gezielt nach einem bestimmten Projektleiter filtern.
+
+
+### **`Filter`-Button**
+
+
+![img_27.png](img_27.png)
+
+```powerapps
+ClearCollect(colFilterData,
+              SortByColumns(Search(Filter(colAuftragData,
+              IsBlank(cbProjektleiterFilter.Selected.Result) || Projektleiter = cbProjektleiterFilter.Selected.Result,
+              IsBlank(cbAuftragsstatusFilter.Selected.Result) || Status = cbAuftragsstatusFilter.Selected.Result,
+              If(Not(IsBlank(comboBoxMBStatusFilter.Selected.Result) && IsBlank(textInputBestellungssuche.Text)),
+                ID in(Search(Filter(colBestellungData, IsBlank(comboBoxMBStatusFilter.Selected.Result) || Status = comboBoxMBStatusFilter.Selected.Result),
+                textInputBestellungssuche.Text, Auftragsbezeichnung, BestellnummerText, LieferantenreferenzAB).MatRefID), true)),
+                txProjektsucheFilter.Text,
+                'Emailadresse des Kunden', Titel, 'SD-/Projekt-Nr.'), "Created", SortOrder.Descending))
+```
+
+Beim Klick auf `Filtern` durchsucht die App die Collection mit allen Aufträgen. Dabei prüft sie, ob bestimmte Filter gesetzt wurden **z.B.** `Projektleiter`, `Auftragsstatus`, `Materialstatus` oder ein `Suchbegriff`. Nur Datensätze, die zu diesen Filtern passen, kommen in die neue gefilterte Collection `colFilterData`. Zusätzlich werden auch verknüpfte Bestellungen berücksichtigt. Am Ende wird alles nach dem Erstellungsdatum sortiert angezeigt.
+
+### **`Radierer`-Button**
+
+![img_28.png](img_28.png)
+
+```powerapps
+ClearCollect(colFilterDaata, Neuer_Auftrag);
+Reset(cbAuftragsstatusFilter);
+Reset(comboBoxMBStatusFilter);
+Reset(cbProjektleiterFilter);
+Reset(textInputBestellungssuche);
+Reset(txProjektsucheFilter);
+```
+
+Beim Klick auf das `Radiergummi` wird der Filter vollständig zurückgesetzt: Die `Dropdowns` und `Suchfelder` `Projektleiter`, `Status`, `Bestellstatus`, `Textsuche` werden geleert, und die ursprüngliche Auftragssammlung wird neu geladen.
+
+#### **Auftrageintrage**
+
+![img_29.png](img_29.png)
+
+```powerapps
+If(varShowID = ThisItem.ID, 
+    Set(varShowID, 0), 
+    Set(varShowID, ThisItem.ID)
+)
+```
+
+Dieser Code sorgt dafür, dass man einen Eintrag **z.B.** ein `Projekt` auf- und zuklappen kann. Wenn man auf den Eintrag klickt, wird gemerkt, welche `ID` dazugehört. Klickt man nochmal, wird er wieder zugeklappt. So zeigt die App nur bei einem Projekt die Detailinfos genau dem, das man angeklickt hat.
+
+#### **Materialbestellungskachel:**
+
+![img_30.png](img_30.png)
+
+```powerapps
+SortByColumns(
+    Filter(
+        MaterialBst, MatRefID = This.Item.ID
+    ),
+    "Created",
+    SortOrder.Descending
+)
+```
+
+Der Code sucht alle Bestellungen `MaterialBst`, die zu einem bestimmten Projekt gehören also dort, wo die Projekt-ID `MatRefID` mit der aktuellen ID `ThisItem.ID` übereinstimmt. Dann sortiert er diese Treffer nach dem Erstellungsdatum `"Created"`, und zwar so, dass die neuste Bestellung ganz oben steht. So sieht man im Projekt immer zuerst die aktuelle Bestellung. Der Warenkorb oben rechts navigiert zum `Materialbestellungs-Screen`.
+
+#### **Bemerkungskachel:**
+
+![img_31.png](img_31.png)
+
+```powerapps
+SortByColumns(
+    Filter(
+        'Bemerkung Projekt',
+        ProjektRefID = This.Item.ID
+    ),
+    "Created",
+    SortOrder.Descending
+)
+```
+
+Der Code zeigt alle Bemerkungen, die zu einem bestimmten Projekt gehören `ProjektRefID = ThisItem.ID`, und sortiert sie so, dass die neueste Bemerkung ganz oben steht. So sieht man sofort den aktuellen Kommentar zum Projekt.
+
+#### **Transportkachel:**
+
+![img_32.png](img_32.png)
+
+```powerapps
+Set(
+    gblTransportRecord,
+    gblAuftragsInfo.Selected
+);
+EditForm(TRAForm);
+Navigate(AuftragScreen, BorderStyle.None, {locTransportPopuoBool: true, locTransportRecord: ThisItem}
+);
+```
+Wenn man auf einen Transport klickt, merkt sich die App den zugehörigen Auftrag, öffnet ein Formular zum Bearbeiten und zeigt automatisch den passenden `Transport-Bereich` auf der nächsten Seite. So kann man direkt weiterarbeiten.
+
+## **6. Auftrag-Screen**
 
