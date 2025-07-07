@@ -1,16 +1,17 @@
-# Workflow Tool Powerapps und Powerautomate für Coder
-## Dokumentation
+# **Workflow Tool Powerapps und Powerautomate für Coder**
+## **Dokumentation**
 
-## Inhalt:
+## **Inhalt:**
 1. Grundlagen Powerapps
 2. Grundlagen des Einfpgens von Elementen
+3. Legende von Properties
 
 
-## 1. Grundlagen Powerapps
+## **1. Grundlagen Powerapps**
 
 In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die Entwicklung von Apps in Powerapps erforderlich sind.
 
-### Grundfunktionen
+### **Grundfunktionen**
 
 - `If()`: Wenn etwas zutrifft, dann mach dies, sonst mach das.  
   > ***z. B.*** Wenn Alter über 18, dann "Erwachsen", sonst "Kind"
@@ -25,7 +26,7 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
 - `Exit()`: Beendet die App.  
   > ***z. B.*** `Exit()`
 
-### Textfunktionen
+### **Textfunktionen**
 - `Text()`: Formatiert eine Zahl oder ein Datum als Text.  
   > ***z. B.*** `Text(1234.56, "[$-de-DE]#,##0.00")` formatiert die Zahl als deutschen Währungsbetrag.
 - `Value()`: Konvertiert Text in eine Zahl.  
@@ -39,7 +40,7 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
 `Trim()`: Entfernt Leerzeichen am Anfang und Ende eines Textes.  
   > ***z. B.*** `Trim("  Hallo  ")` gibt "Hallo" zurück.
 
-### Mathematikfunktionen
+### **Mathematikfunktionen**
 - `Round()`: Rundet eine Zahl auf eine bestimmte Anzahl von Dezimalstellen.  
   > ***z. B.*** `Round(123.456, 2)` gibt 123.46 zurück.
 - `Abs()`: Gibt den Absolutwert einer Zahl zurück.  
@@ -52,7 +53,7 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
   > ***z. B.*** `Mod(10, 3)` gibt 1 zurück, da 10 geteilt durch 3 einen Rest von 1 hat.
   > 
 
-### Logikfunktionen
+### **Logikfunktionen**
 - `And()`, `Or()`, `Not()`: Logische Operatoren für Bedingungen.  
   > ***z. B.*** `If(And(Age > 18, IsStudent), "Erwachsen und Student", "Nicht erwachsen oder kein Student")`
   > `If(Or(Age < 18, IsStudent), "Kind oder Student", "Erwachsen und kein Student")`
@@ -65,7 +66,7 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
 - `IsError()`: Überprüft, ob ein Ausdruck einen Fehler zurückgibt.  
   > ***z. B.*** `If(IsError(LookUp(MyTable, ID = 1)), "Fehler beim Suchen", "Suche erfolgreich")`
 
-### Datum- und Zeitfunktionen
+### **Datum- und Zeitfunktionen**
 - `Now()`: Gibt das aktuelle Datum und die aktuelle Uhrzeit zurück.  
   > ***z. B.*** `Now()` gibt etwas wie "2023-10-01 12:34:56" zurück.
 - `Today()`: Gibt das aktuelle Datum zurück (ohne Uhrzeit).  
@@ -83,7 +84,7 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
 - `FormatDateTime()`: Formatiert ein Datum als Text.  
   > ***z. B.*** `FormatDateTime(Today(), DateTimeFormat.LongDate)` gibt das Datum im langen Format zurück, z. B. "1. Oktober 2023".
 
-### Listen und Daten
+### **Listen und Daten**
 - `Collect()`: Fügt Elemente zu einer Sammlung hinzu.  
   > ***z. B.*** `Collect(MyCollection, {Name: "Max", Age: 30})` fügt ein Objekt mit Name und Alter zur Sammlung hinzu.
 - `Clear()`: Löscht alle Elemente aus einer Sammlung.  
@@ -103,7 +104,7 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
 - `Filter()`: Filtert eine Sammlung nach einer Bedingung.  
   > ***z. B.*** `Filter(MyCollection, Age > 18)` gibt alle Objekte zurück, bei denen das Alter über 18 ist.
 
-### Suchen und Filtern
+### **Suchen und Filtern**
 - `LookUp()`: Sucht ein einzelnes Element in einer Sammlung, das eine bestimmte Bedingung erfüllt.  
   > ***z. B.*** `LookUp(MyCollection, Name = "Max")` gibt das Objekt mit Name "Max" zurück.
 - `Search()`: Sucht nach einem Text in einer Sammlung.  
@@ -118,13 +119,13 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
   > ***z. B.*** `StartsWith("Hallo", "Ha")` gibt `true` zurück, `EndsWith("Hallo", "lo")` gibt ebenfalls `true` zurück.
 
 
-## 2. Grundlagen des Einfügens von Elementen
+## **2. Grundlagen des Einfügens von Elementen**
 
-In diesem Kapitel werden die Grundlagen des Einfügens von Elementen in Powerapps erläutert, einschließlich der Verwendung von Steuerelementen und deren Eigenschaften.
+In diesem Kapitel werden die Grundlagen des Einfügens von Elementen in Powerapps erläutert, einschliesslich der Verwendung von Steuerelementen und deren Eigenschaften.
 
-Damit man eine Element in Powerapps einfügen kann, muss man im Sharepoint das Element speichern. Für Powerapps ist Sharepoint eine Datenbank und dort wird alles gespeichert.
+Damit man ein Element in Powerapps einfügen kann, muss man im Sharepoint das Element speichern. Für Powerapps ist Sharepoint eine Datenbank und dort wird alles gespeichert.
 
-- Dafür gehst du auf der RC-CH.Workflow
+- Dafür gehst du auf der RC-CH-Workflow
 
 ![alt text](image.png)
 
@@ -133,41 +134,41 @@ Damit man eine Element in Powerapps einfügen kann, muss man im Sharepoint das E
 
 ![alt text](image-1.png)
 
-- Ganz rechts auf Add Column erstellt man eine Spalte nach Wunsch / Vorgabe. Danach wird dies gespeichert.
+- Ganz rechts auf `Add Column` erstellt man eine Spalte nach Wunsch / Vorgabe. Danach wird dies gespeichert.
 
 ![alt text](image-2.png)
 
-- Ganz wichtig: Auf der Poweapps-Seite muss du die Liste `refreshen`, da diese ergänzt wurde.
+- Ganz wichtig: Auf der Powerapps-Seite musst du die Liste `refreshen`, da diese ergänzt wurde.
 
 ![alt text](image-3.png)
 
 - Unter `Properties` &rarr; `Display` &rarr; `Edit fields` &rarr; `Add fields` findest du ein erstelltes Feld
 - Wichtig zu beachten ist, dass du unter Data Source die richtige Sharepoint Liste anwählst und auf den Screen in die Form (Quadrat mit Violetter Umrandung) anklickst.
 
-### Gängige Feldtypen in PowerApps (basierend auf der Benutzeroberfläche)
+### **Gängige Feldtypen in PowerApps (basierend auf der Benutzeroberfläche)**
 
 PowerApps bietet verschiedene Steuerelemente für due Dateneingabe und Navigation. Hier sind due wichtigsten Typen und ihre Anwendungen:
 
-1. `Textfelder`
+1. **`Textfelder`**
    - Einzeiliges Textfeld `TextInput`: Zum Eingeben kurzer Texte wie "Projektname" oder "Bestellnummer".
    - Mehrzeiliges Textfeld `TextArea`: Für längere Eingaben wie "Bemerkung zu Bestellung" oder "Notizen zum Kunden".
 
-2. `Auswahlfelder`
+2. **`Auswahlfelder`**
    - Dropdown `DropDown` / Kombobox `ComboBox`: Ermöglicht die Auswahl einer Option aus einer Liste, <p>
    > ***z.B.*** "Lieferantentyp" oder "Status".
 
-3. `Datumauswahl`
+3. **`Datumauswahl`**
    - Date Picker `DatePicker`: Auswahl eines Datums, <p>
    > ***z.B.*** "Lieferdatum" oder "Projektstart"
 
-4. `Umschalter` für Ja/Nein-Entscheidungen
+4. **`Umschalter` für Ja/Nein-Entscheidungen**
    - Toggle `Toggle`: Schieberegler für Ein/Aus-Aktionen wie (Neuer Lieferant: `On/Off`)
 
-5. `Schaltflächen` für `Aktionen`
+5. **`Schaltflächen` für `Aktionen`**
    - Button `Button`: Führ eine aktion aus, <p>
    > ***z.B*** "Bestellung erfassen" oder "Dokument öffnen"
 
-6. `Navigation` und `Aktionsleisten`
+6. **`Navigation` und `Aktionsleisten`**
    - Diese Steuerelemente dienen dazu, die Benutzer durch die App zu führen oder zusätzlliche Funktionen bereizusellen:
      - `Navigationsleisten`: Ermöglichen den Wechsel zwischen verschiedenen Ansichten oder Seiten der App. <p> 
      > ***z.B.*** Eine leiste am oberen Bildschirmrand mit `Startseite`, `Bestellungen` und `Einstellungen`.
@@ -175,3 +176,44 @@ PowerApps bietet verschiedene Steuerelemente für due Dateneingabe und Navigatio
      > ***z.B*** Ein `+` Symbol zum Hinzufügen neuer Daten oder ein `Anhang-Button`zum hochladen von Dokumenten.
 
 Diese Feldtypen sind essenziell für die Dateneingabe und Steuerung in PowerApps. Eine sinnvolle Platzierung und Verwendung verbessert die Benutzerfreundlichkeit erheblich.
+
+## **3. Legende von Properties**
+
+![img_18.png](img_18.png)
+
+`Properties` bestimmen, **wie ein Element aussieht und funktioniert** also
+> ***z.B.*** die Farbe, Grösse, Sichtbarkeit und Verhalten eines Steuerelements.
+
+Damit legt man fest, **was der Nutzer sieht und wie er mit dem Element interagieren kann.**
+
+In PowerApps gibt es **zwei Arten con eigenschaften**, die man einstellen kann:
+- `Display` enthält die sichtbaren Grundeinstellungen <p></p>
+> ***z.B.*** die Farbe, Grösse oder Sichtbakeit.
+- `Advanced` zeigt **erweiterte Einstellungen** an:
+> ***z.B.*** wie das Element auf Klicks reagiert oder mit Daten verbunden ist.
+
+So kann man einfach steuern, **wie ein `Button` aussieht und wofür er zuständig ist** von einfach bis komplexen Funktionen.
+
+### **Display-Eigenschaften**
+- **`Text`**: Der Text, der im `Element` oder `Button` angezeigt wird.  
+  > ***z. B.*** "Bestellung abschliessen"
+- **`DisplayMode`**: Legt fest, ob das Element `Bearbeitbar`, `Nur-Lesen` oder `Deaktiviert` ist.  
+  > ***z. B.*** `DisplayMode.Edit` für ein bearbeitbares Textfeld.
+- **`Visible`**: Bestimmt, ob das Element sichtbar ist oder nicht.  
+  > ***z. B.*** `true` für sichtbar, `false` für unsichtbar.
+- `Position (X/Y)`: Legt die Position des Elements auf dem Bildschirm fest.  
+  > ***z. B.*** `X = 100`, `Y = 200` für eine Position 100 Pixel von links und 200 Pixel von oben.
+- **`Size (Width(Height)`**: Bestimmt die Grösse des Elements.  
+  > ***z. B.*** `Width = 200`, `Height = 50` für eine Breite von 200 Pixeln und eine Höhe von 50 Pixeln.
+- **`Padding`**: Fügt Abstand um das Element herum hinzu.  
+  > ***z. B.*** `Padding = 10` für einen Abstand von 10 Pixeln auf allen Seiten.
+  - **`Allignment`**: Legt die Ausrichtung des Textes im Element fest.  
+  >   ***z. B.*** `Alignment = Center` für zentrierten Text. `Alignment = Left` für linksbündigen Text. `Alignment = Right` für rechtsbündigen Text. `Alignment = Justify` für Blocksatz. `Alignment = Top` für Text am oberen Rand. `Alignment = Bottom` für Text am unteren Rand.
+- **`VerticalAlign`**: Bestimmt die vertikale Ausrichtung des Textes im Element.  
+  > ***z. B.*** `VerticalAlign = Top` für Text am oberen Rand, `VerticalAlign = Bottom` für Text am unteren Rand.
+- **`Font, FontSize, FontWeight`**: Legt die Schriftart, Schriftgrösse und Schriftstärke fest.  
+  > ***z. B.*** `Font = "Arial"`, `FontSize = 14`, `FontWeight = Bold` für eine fette Schriftart in Arial mit einer Grösse von 14.
+- **`Color`**: Bestimmt die Textfarbe des Elements.  
+  > ***z. B.*** `Color = RGBA(0, 0, 0, 1)` für schwarzen Text.
+> [Color Enumeration](https://learn.microsoft.com/en-us/power-platform/power-fx/reference/function-colors)
+
