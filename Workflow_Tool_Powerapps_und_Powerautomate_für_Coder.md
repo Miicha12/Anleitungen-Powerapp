@@ -34,9 +34,9 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
 - `Len()`: Gibt die Länge eines Textes zurück.  
   > ***z. B.*** `Len("Hallo")` gibt 5 zurück.
 - `Left()`, `Right()`, `Mid()`: Extrahieren Teile eines Textes.
-    > ***z. B.*** `Left("Hallo", 2)` gibt "Ha" zurück, `Right("Hallo", 2)` gibt "lo" zurück, `Mid("Hallo", 2, 3)` gibt "all" zurück.
+    > ***z. B.*** `Left("Hallo", 2)` gibt **Ha** zurück, <p></p> `Right("Hallo", 2)` gibt **lo** zurück, <p></p> `Mid("Hallo", 2, 3)` gibt **all** zurück.
 - `Upper()`, `Lower()`: Wandeln Text in Groß- oder Kleinschreibung um.
-    > ***z. B.*** `Upper("Hallo")` gibt "HALLO" zurück, `Lower("HALLO")` gibt "hallo" zurück.
+    > ***z. B.*** `Upper("Hallo")` gibt **HALLO** zurück, <p></p> `Lower("HALLO")` gibt **hallo** zurück.
 `Trim()`: Entfernt Leerzeichen am Anfang und Ende eines Textes.  
   > ***z. B.*** `Trim("  Hallo  ")` gibt "Hallo" zurück.
 
@@ -110,13 +110,13 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
 - `Search()`: Sucht nach einem Text in einer Sammlung.  
   > ***z. B.*** `Search(MyCollection, "Max", "Name")` gibt alle Objekte zurück, bei denen der Name "Max" enthält.
 - `First()`, `Last()`: Gibt das erste oder letzte Element einer Sammlung zurück.  
-  > ***z. B.*** `First(MyCollection)` gibt das erste Objekt in der Sammlung zurück, `Last(MyCollection)` das letzte.
+  > ***z. B.*** `First(MyCollection)` gibt das erste Objekt in der Sammlung zurück, <p></p> `Last(MyCollection)` das letzte.
 - `FirstN()`, `LastN()`: Gibt die ersten oder letzten N Elemente einer Sammlung zurück.  
-  > ***z. B.*** `FirstN(MyCollection, 3)` gibt die ersten 3 Objekte zurück, `LastN(MyCollection, 2)` die letzten 2.
+  > ***z. B.*** `FirstN(MyCollection, 3)` gibt die ersten 3 Objekte zurück, <p></p> `LastN(MyCollection, 2)` die letzten 2.
 - `Distinct()`: Gibt eine Sammlung von eindeutigen Werten aus einer bestimmten Spalte zurück.  
   > ***z. B.*** `Distinct(MyCollection, Name)` gibt eine Liste aller eindeutigen Namen in der Sammlung zurück.
 - `StartsWith()`, `EndsWith()`: Überprüfen, ob ein Text mit einem bestimmten Präfix oder Suffix beginnt oder endet.  
-  > ***z. B.*** `StartsWith("Hallo", "Ha")` gibt `true` zurück, `EndsWith("Hallo", "lo")` gibt ebenfalls `true` zurück.
+  > ***z. B.*** `StartsWith("Hallo", "Ha")` gibt `true` zurück, <p></p> `EndsWith("Hallo", "lo")` gibt ebenfalls `true` zurück.
 
 
 ## **2. Grundlagen des Einfügens von Elementen**
