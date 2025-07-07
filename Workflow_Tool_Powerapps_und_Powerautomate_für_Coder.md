@@ -8,6 +8,9 @@
 4. App und Start-Screen
 5. Home-Screen
 6. Auftrag-Screen
+7. Signierung-Screen
+8. Bemerkung-Screen
+9. Materialbestellung-Screen
 
 
 ## **1. Grundlagen Powerapps**
@@ -217,7 +220,7 @@ So kann man einfach steuern, **wie ein `Button` aussieht und wofür er zuständi
 - **`Font, FontSize, FontWeight`**: Legt die Schriftart, Schriftgrösse und Schriftstärke fest.  
   > ***z. B.*** `Font = "Arial"`, `FontSize = 14`, <p></p> `FontWeight = Bold` für eine fette Schriftart in Arial mit einer Grösse von 14.
 - **`Color`**: Bestimmt die Textfarbe des Elements.  
-  > ***z. B.*** `Color = RGBA(0, 0, 0, 1)` für schwarzen Text.
+  > ***z. B.*** `Color = RGBA(0, 0, 0, 1)` für schwarzen Text. <p></p>
   > [Color Enumeration](https://learn.microsoft.com/en-us/power-platform/power-fx/reference/function-colors)
 - **`Fill`**: Legt die Hintergrundfarbe des Elements fest.  
   > ***z. B.*** `Fill = RGBA(255, 255, 255, 1)` für einen weissen Hintergrund.
@@ -743,4 +746,173 @@ Beim Klick prüft die **If-Abfrage**, ob der übergebene Parameter `ScreenID = 0
 > **z.B.** <p></p> 1 = HomeScreen, <p></p> 2 = AuftragScreen usw. <p></p>
 
 Damit kann man flexibel auf verschiedene Seiten springen, je nach Zahl im Parameter.
+
+## **9. Materialbestellung-Screen**
+
+![img_48.png](img_48.png)
+
+#### **`Bestelländerung`- Button**
+
+![img_49.png](img_49.png)
+
+```powerapps
+UpdateContext({locRequiredFieldsBool1:true});
+UpdateContext({locBstAenderungBool: true});
+If(
+    SubmitForm(materialBstForm),
+    Set(
+        gblBestellungRecord,
+        materialBstForm.LastSubmit
+    );
+    UpdateContext({locSendMailPopupBool:true}),    
+    Notify(
+        "Bitte Fehlende Informationen ergänzen",
+        NotificationType.Error
+    )
+)
+```
+
+Beim Klick auf den `Bestelländerung`-Button wird zuerst `locRequiredFieldsBool` und `locBstAenderungBool` auf `true` gesetzt das aktiviert Pflichtfeldprüfungen und markiert den Vorgang als Änderung. Danach wird `SubmitForm(materialBstForm)` ausgeführt, um die Bestellung zu speichern. War dies erfolgreich, wird die gespeicherte Bestellung in `gblBestellungRecord` gespeichert und `locSendMailPopupBool` aktiviert, um das **Mail-Fenster** zu öffnen. Falls das Speichern fehlschlägt, zeigt `Notify` eine Fehlermeldung.
+
+#### **`LIeferantenbestätigung erhalten`- Button**
+
+![img_50.png](img_50.png)
+
+```powerapps
+UpdateContext({locRequiredFieldsBool2:true});
+If(
+    SubmitForm(materialBstForm),
+    Set(
+        gblBestellungRecord,
+        materialBstForm.LastSubmit
+    );
+    UpdateContext({locFlowResponse:MeldungLBerhalten.Run(gblBestellungRecord.ID)});
+    If(
+        IsEmpty(Errors(MaterialBst)) && locFlowResponse.succeeded,
+        Notify(
+            "Lieferantenbestätigung abgespeichert, Projektleiter informiert",
+            NotificationType.Success
+        );
+        Patch(MaterialBst,gblBestellungRecord, {Status:"LB erhalten"},
+        {Lieferantenbestaetigung_received:true});
+        UpdateContext({locRequiredFieldsBool2:false});
+        Navigate(HomeScreen),
+        Notify(
+        "Fehler, Bitte Eingabe überprüfen:" & First(Errors(MaterialBst)).Message,
+        NotificationType.Error
+        )
+    ),
+    Notify(
+        "Bitte Fehlende Informationen ergänzen",
+        NotificationType.Error
+    )
+)
+```
+
+Beim Klick auf den `Lieferantenbestätigung erhalten`-Button prüft `SubmitForm(materialBstForm)`, ob das Formular korrekt ausgefüllt ist. Ist das erfolgreich, wird die Bestellung in `gblBestellungRecord` gespeichert. Danach wird ein **Flow** `MailingBestellstatusMailing` gestartet, um Projektleiter per E-Mail zu informieren. War der Flow erfolgreich, wird der Status der Bestellung auf `Status auf erhalten` gesetzt und eine Erfolgsnachricht angezeigt. Falls der Flow oder das Speichern fehlschlägt, wird eine passende Fehlermeldung mit `Notify` angezeigt.
+
+#### **`Auftrag & Bestellung erfassen`- Button**
+
+![img_51.png](img_51.png)
+
+```powerapps
+If(
+    SubmitForm(materialBstForm),
+    Set(
+        gblBestellungRecord,
+        materialBstForm.LastSubmit
+    );
+    UpdateContext({locFlowResponse:ErfassungsbestätigungFunktionsaccount.Run(gblAuftragRecord.ID,gblBestellungRecord.ID)});
+    If(
+        IsEmpty(Errors(MaterialBst)) && locFlowResponse.succeeded,
+        Notify(
+            "Bestellung erfolgreich erfasst, Logistik benachrichtigt",
+            NotificationType.Success
+        );
+        Patch(
+            MaterialBst,
+            gblBestellungRecord,
+            {Status: "MB erfasst"}
+        );
+        Patch(
+            Neuer_Auftrag,
+            gblAuftragRecord,
+            {'Auftragserfassung Complete': true}
+        );
+        If(
+            gblAuftragRecord.Status = "Abgelehnt" || gblAuftragRecord.Status = "WF angelegt",
+            Patch(
+                Neuer_Auftrag,
+                gblAuftragRecord,
+                {Status: "WF zur Bearbeitung"}
+            )
+        );
+        Navigate(HomeScreen),
+        Notify(
+            "Email wurde nicht gesendet, bitte Eingaben überpfrüfen",
+            NotificationType.Error
+        )
+    ),
+    Notify(
+        "Bitte Fehlende Informationen ergänzen",
+        NotificationType.Error
+    )
+)
+```
+
+Beim Klick wird `SubmitForm(materialBstForm)` ausgeführt und die Bestellung gespeichert. Danach startet der **Flow** `ErfassungsbestaetigungFunktionsaccount.Run(...)`. Funktioniert alles, setzt Patch den Bestellstatus auf `IB erfasst` und markiert den Auftrag als `erfasst` oder `IB zur Bearbeitung`. Bei Fehlern erscheint eine `Notify`-Meldung.
+
+#### **`AUftrag erfassen`- Button**
+
+![img_52.png](img_52.png)
+
+```powerapps
+
+```
+
+Beim Klick speichert `SubmitForm(materialBstForm)` die Bestellung. Danach ruft `ErfassungsbestaetigungFunktionsaccount.Run(...)` einen **Flow** auf. Treten keine Fehler auf `IsEmpty(Errors(...))` und war der **Flow** erfolgreich `locFlowResponse.succeeded`, wird die Bestellung mit **Patch** auf Status `IB erfasst` gesetzt. Parallel wird der Auftrag als `erfasst` markiert. Falls der Auftrag vorher `Abgelehnt` oder `IB angelegt` war, wird er mit **Patch** auf `IB zur Bearbeitung` gesetzt. Bei Problemen zeigt `Notify` eine Fehlermeldung.
+
+#### **`Materialbestellung ablehnen`- Button**
+
+![img_53.png](img_53.png)
+
+```powerapps
+SubmitForm(materialBstForm);
+Set(
+    gblBemerkungRecord,
+    Blank()
+);
+Set(
+    gblBestellungRecord,
+    materialBstForm.LastSubmit
+);
+NewForm(bemerkungsForm);
+Navigate(BemerkungScreen, BorderStyle.None, {locBemerkungTyp:1});
+```
+
+Beim Klick wird zuerst das Formular `materialBstForm` mit `SubmitForm()` gespeichert. Danach wird die globale Variable `gblBemerkungRecord` auf leer gesetzt `Blank()`, um alte Bemerkungen zu löschen. Mit `Set(gblBestellungRecord, materialBstForm.LastSubmit)` wird die gerade gespeicherte Bestellung in einer Variablen gespeichert. Anschliessend wird mit `NewForm(bemerkungsForm)` ein neues Bemerkungsformular geöffnet und mit `Navigate(BemerkungScreen, ..., {locBemerkungTyp:1})` zur Bemerkungsseite navigiert mit dem Hinweis, dass es sich um eine Ablehnung handelt `locBemerkungTyp:1`.
+
+#### **`Lieferantenbestellung senden`- Button**
+
+![img_54.png](img_54.png)
+
+```powerapps
+UpdateContext({locRequiredFieldsBool1:true});
+If(
+    SubmitForm(materialBstForm),
+    Set(
+        gblBestellungRecord,
+        materialBstForm.LastSubmit
+    );
+    UpdateContext({locSendMailPopupBool:true}),    
+    Notify(
+        "Bitte Fehlende Informationen ergänzen",
+        NotificationType.Error
+    )
+)
+```
+
+Beim Klick wird zuerst `UpdateContext({locRequiredFieldsBool1:true})` gesetzt. Das markiert Pflichtfelder. Danach versucht `SubmitForm(materialBstForm)` die Bestellung zu speichern. Bei Erfolg wird die Bestellung in `gblBestellungRecord` gespeichert und `locSendMailPopupBool` aktiviert `Popup für E-Mail`. Schlägt das Speichern fehl, erscheint per `Notify` eine Fehlermeldung.
+
+#### **`Lieferantenbestellung senden`- Button**
 
