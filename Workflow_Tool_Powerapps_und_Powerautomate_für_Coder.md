@@ -226,3 +226,89 @@ So kann man einfach steuern, **wie ein `Button` aussieht und wofür er zuständi
   > ***z. B.*** `DisabledFill = RGBA(220, 220, 220, 1)` für eine hellere Farbe, wenn das Element deaktiviert ist.
 
 ### **Advanced-Eigenschaften**
+- **`Text`**: Der Text, der im Element angezeigt wird.  
+  > ***z. B.*** `Text = "Bestellung abschliessen"` für den Text auf einem Button.
+- **`Tooltip`**: Ein kurzer Hinweis, der angezeigt wird, wenn der Mauszeiger über das Element fährt.  
+  > ***z. B.*** `Tooltip = "Klicken Sie hier, um die Bestellung abzuschliessen"` für einen Tooltip auf einem Button.
+- **`Align`**: Legt die horizontale Ausrichtung des Textes im Element fest.  
+  > ***z. B.*** `Align = "Center"` für zentrierten Text.
+- **`OnSelect`**: Eine Aktion, die ausgeführt wird, wenn das Element ausgewählt wird.
+  > ***z. B.*** `OnSelect = Navigate(Screen2, ScreenTransition.Fade)` für die Navigation zu einem anderen Bildschirm mit einem Fade-Effekt.
+- **`ContentLanguage`**: Legt die Sprache des Inhalts fest.  
+  > ***z. B.*** `ContentLanguage = "de"` für Deutsch.
+- **`AutoDisableOnSelect`**: Bestimmt, ob das Element nach der Auswahl automatisch deaktiviert wird.  
+  > ***z. B.*** `AutoDisableOnSelect = true` für automatische Deaktivierung nach der Auswahl.
+- **`BorderColor`**: Legt die Farbe des Rahmens des Elements fest.  
+  > ***z. B.*** `BorderColor = RGBA(0, 0, 0, 1)` für einen schwarzen Rahmen.
+- **`BorderStyle`**: Bestimmt den Stil des Rahmens (z. B. durchgezogen, gestrichelt).  
+  > ***z. B.*** `BorderStyle = BorderStyle.Solid` für einen durchgezogenen Rahmen.
+- **`BorderThickness`**: Legt die Dicke des Rahmens fest.  
+  > ***z. B.*** `BorderThickness = 2` für einen Rahmen mit einer Dicke von 2 Pixeln.
+- **`Color`**: Bestimmt die Farbe des Textes im Element.  
+  > ***z. B.*** `Color = RGBA(0, 0, 0, 1)` für schwarzen Text.
+- **`Disabled BorderColor`**: Legt die Farbe des Rahmens fest, wenn das Element deaktiviert ist.  
+  > ***z. B.*** `DisabledBorderColor = RGBA(200, 200, 200, 1)` für einen hellgrauen Rahmen, wenn das Element deaktiviert ist.
+- **`DisabledColor`**: Bestimmt die Farbe des Textes, wenn das Element deaktiviert ist.  
+  > ***z. B.*** `DisabledColor = RGBA(150, 150, 150, 1)` für grauen Text, wenn das Element deaktiviert ist.
+- **`DisabledFill`**: Legt die Hintergrundfarbe des Elements fest, wenn es deaktiviert ist.  
+  > ***z. B.*** `DisabledFill = RGBA(220, 220, 220, 1)` für eine hellere Farbe, wenn das Element deaktiviert ist.
+- **`DisplayMode`**: Bestimmt, ob das Element bearbeitbar, nur lesbar oder deaktiviert ist.  
+  > ***z. B.*** `DisplayMode = DisplayMode.Edit` für ein bearbeitbares Element. <p></p>
+  > ***z. B.*** `DisplayMode = DisplayMode.Disabled` für ein deaktiviertes Element. <p></p>
+  > ***z. B.*** `DisplayMode = DisplayMode.View` für ein nur lesbares Element.
+- **`Fill`**: Legt die Hintergrundfarbe des Elements fest.  
+  > ***z. B.*** `Fill = RGBA(255, 255, 255, 1)` für einen weissen Hintergrund.
+- **`FocusedBorderColor`**: Bestimmt die Farbe des Rahmens, wenn das Element den Fokus hat.  
+  > ***z. B.*** `FocusedBorderColor = RGBA(0, 120, 215, 1)` für einen blauen Rahmen, wenn das Element fokussiert ist.
+- **`FocusedBorderThickness`**: Legt die Dicke des Rahmens fest, wenn das Element den Fokus hat.  
+  > ***z. B.*** `FocusedBorderThickness = 2` für einen Rahmen mit einer Dicke von 2 Pixeln, wenn das Element fokussiert ist.
+- **`Font`**: Bestimmt die Schriftart des Textes im Element.  
+  > ***z. B.*** `Font = "Arial"` für die Schriftart Arial. <p></p>
+  > ***z. B.*** `Font = "Calibri"` für die Schriftart Calibri. <p></p>
+  > ***z. B.*** `Font = "Times New Roman"` für die Schriftart Times New Roman. <p></p>
+  > ***z. B.*** `Font = "Verdana"` für die Schriftart Verdana.
+- **`FontWeight`**: Legt die Schriftstärke des Textes fest.  
+  > ***z. B.*** `FontWeight = FontWeight.Bold` für fette Schrift. <p></p>
+  > ***z. B.*** `FontWeight = FontWeight.Normal` für normale Schrift. <p></p>
+  > ***z. B.*** `FontWeight = FontWeight.Light` für leichte Schrift. <p></p>
+  > ***z. B.*** `FontWeight = FontWeight.Thin` für dünne Schrift. <p></p>
+  > ***z. B.*** `FontWeight = FontWeight.ExtraBold` für extra fette Schrift. <p></p>
+  > ***z. B.*** `FontWeight = FontWeight.ExtraLight` für extra leichte Schrift.
+- **`Height`**: Legt die Höhe des Elements fest.  
+  > ***z. B.*** `Height = 50` für eine Höhe von 50 Pixeln.
+- **`HoverBorderColor`**: Bestimmt die Farbe des Rahmens, wenn der Mauszeiger über das Element schwebt.  
+  > ***z. B.*** `HoverBorderColor = RGBA(200, 200, 200, 1)` für einen hellgrauen Rahmen beim Hover-Effekt.
+- **`HoverFill`**: Legt die Hintergrundfarbe des Elements fest, wenn der Mauszeiger darüber schwebt.  
+  > ***z. B.*** `HoverFill = RGBA(200, 200, 200, 1)` für eine hellgraue Farbe beim Hover-Effekt.
+- **`HoverColor`**: Bestimmt die Textfarbe des Elements, wenn der Mauszeiger darüber schwebt.  
+  > ***z. B.*** `HoverColor = RGBA(0, 0, 0, 1)` für schwarzen Text beim Hover-Effekt.
+- **`Italic`**: Legt fest, ob der Text kursiv dargestellt wird.  
+  > ***z. B.*** `Italic = true` für kursiven Text, <p></p> `Italic = false` für normalen Text.
+- **`PaddingBottom` / `PaddingLeft` / `PaddingRight` / `PaddingTop`**: Fügt Abstand um das Element herum hinzu.  
+  > ***z. B.*** `PaddingBottom = 10`, <p></p> `PaddingLeft = 5`, <p></p> `PaddingRight = 5`, <p></p> `PaddingTop = 10` für einen Abstand von 10 Pixeln unten, 5 Pixeln links und rechts und 10 Pixeln oben.
+- **`PressedBorderColor`**: Bestimmt die Farbe des Rahmens, wenn das Element gedrückt wird.  
+  > ***z. B.*** `PressedBorderColor = RGBA(150, 150, 150, 1)` für einen dunkleren Rahmen beim Drücken des Elements.
+- **`PressedFill`**: Legt die Hintergrundfarbe des Elements fest, wenn es gedrückt wird.  
+  > ***z. B.*** `PressedFill = RGBA(150, 150, 150, 1)` für eine dunklere Farbe beim Drücken des Elements.
+- **`PressedColor`**: Bestimmt die Textfarbe des Elements, wenn es gedrückt wird.  
+  > ***z. B.*** `PressedColor = RGBA(255, 255, 255, 1)` für weissen Text beim Drücken des Elements.
+- **`RadiusBottomLeft` / `RadiusBottomRight` / `RadiusTopLeft` / `RadiusTopRight`**: Legt die Eckenradien des Elements fest.  
+  > ***z. B.*** `RadiusBottomLeft = 5`, <p></p> `RadiusBottomRight = 5`, <p></p> `RadiusTopLeft = 5`, <p></p> `RadiusTopRight = 5` für abgerundete Ecken von 5 Pixeln auf allen Seiten.
+- **`Size`**: Bestimmt die Grösse des Elements.  
+  > ***z. B.*** `Size = 14` für eine Schriftgrösse von 14 Pixeln.
+- **`Strikethrough`**: Legt fest, ob der Text durchgestrichen wird.  
+  > ***z. B.*** `Strikethrough = true` für durchgestrichenen Text, <p></p> `Strikethrough = false` für normalen Text.
+- **`TabIndex`**: Bestimmt die Tabulatorreihenfolge des Elements.  
+  > ***z. B.*** `TabIndex = 1` für das erste Element in der Tabulatorreihenfolge.
+- **`Underline`**: Legt fest, ob der Text unterstrichen wird.  
+  > ***z. B.*** `Underline = true` für unterstrichenen Text, <p></p> `Underline = false` für normalen Text.
+- **`VerticalAlign`**: Bestimmt die vertikale Ausrichtung des Textes im Element.  
+  > ***z. B.*** `VerticalAlign = "Top"` für Text am oberen Rand, <p></p> `VerticalAlign = "Bottom"` für Text am unteren Rand.
+- **`Width`**: Legt die Breite des Elements fest.  
+  > ***z. B.*** `Width = 200` für eine Breite von 200 Pixeln.
+- **`X` / `Y`**: Bestimmt die Position des Elements auf dem Bildschirm.  
+  > ***z. B.*** `X = 100`, <p></p> `Y = 200` für eine Position 100 Pixel von links und 200 Pixel von oben.
+- **`Visible`**: Legt fest, ob das Element sichtbar ist oder nicht.  
+  > ***z. B.*** `Visible = true` für sichtbares Element, <p></p> `Visible = false` für unsichtbares Element.
+
+
