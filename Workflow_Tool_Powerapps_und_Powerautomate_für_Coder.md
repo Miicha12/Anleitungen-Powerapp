@@ -409,7 +409,7 @@ ForAll(Distinct(colAuftragData, Projektleiter), {Result: ThisRecord.Value})
 Das Dropdown zeigt automatisch alle **eindeutigen** Projektleiter aus der Collection `colAuftragData` an. Dabei sorgt `Distinct` dafür, dass jeder Name nur einmal vorkommt doppelte werden entfernt. Mit `ForAll` wird dann aus jedem Namen ein eigener Eintrag fürs `Dropdown` erstellt. So kann man später gezielt nach einem bestimmten Projektleiter filtern.
 
 
-### **`Filter`-Button**
+### **`Filter`- Button**
 
 
 ![img_27.png](img_27.png)
@@ -428,7 +428,7 @@ ClearCollect(colFilterData,
 
 Beim Klick auf `Filtern` durchsucht die App die Collection mit allen Aufträgen. Dabei prüft sie, ob bestimmte Filter gesetzt wurden **z.B.** `Projektleiter`, `Auftragsstatus`, `Materialstatus` oder ein `Suchbegriff`. Nur Datensätze, die zu diesen Filtern passen, kommen in die neue gefilterte Collection `colFilterData`. Zusätzlich werden auch verknüpfte Bestellungen berücksichtigt. Am Ende wird alles nach dem Erstellungsdatum sortiert angezeigt.
 
-### **`Radierer`-Button**
+### **`Radierer`- Button**
 
 ![img_28.png](img_28.png)
 
@@ -500,9 +500,247 @@ Set(
 );
 EditForm(TRAForm);
 Navigate(AuftragScreen, BorderStyle.None, {locTransportPopuoBool: true, locTransportRecord: ThisItem}
-);
+)
 ```
 Wenn man auf einen Transport klickt, merkt sich die App den zugehörigen Auftrag, öffnet ein Formular zum Bearbeiten und zeigt automatisch den passenden `Transport-Bereich` auf der nächsten Seite. So kann man direkt weiterarbeiten.
 
 ## **6. Auftrag-Screen**
+
+![img_33.png](img_33.png)
+
+#### **`Auftragerfassung ablehnen`- Button**
+
+![img_34.png](img_34.png)
+
+```powerapps
+If(
+    SubmitForm(auftragsForm),
+    Set(
+        gblAuftragRecord,
+        auftragsForm.LastSubmit
+    );
+    Set(
+        gblBemerkungRecord,
+        Blank()
+    );
+    NewForm(bemerkungsForm);
+    Navigate(BemerkungScreen, BorderStyle.None, {locBemerkungTyp:4}),
+    Notify(
+        "Bitte Fehlende Informationen ergänzen",
+        NotificationType.Error
+    )
+)
+```
+
+Beim Klick speichert SubmitForm das Auftragsformular. Wenn erfolgreich, wird der Auftrag in `gblAuftragRecord` gespeichert, die Bemerkung geleert `Blank()`, ein neues Formular gestartet `NewForm` und zur Bemerkungsseite navigiert mit `locBemerkungTyp: 4` als Ablehnungsgrund. Wenn das Speichern fehlschlägt, zeigt `Notify` eine Fehlermeldung an.
+
+#### **`Archivieren`- Button**
+
+![img_35.png](img_35.png)
+
+```powerapps
+If(
+    SubmitForm(auftragsForm),
+    Set(
+        gblAuftragRecord,
+        auftragsForm.LastSubmit
+    );
+    UpdateContext({locFlowResponse:ArchivierenFunktionsaccount.Run(gblAuftragRecord.ID)});
+    If(
+        IsEmpty(Errors(Neuer_Auftrag)) && locFlowResponse.succeeded,
+        Notify("Auftrag archiviert", NotificationType.Success);
+        ForAll(Filter(MaterialBst, MatRefID = gblAuftragRecord.ID) As tblBestellungRecord, RemoveIf(Lieferantenanhaenge, 'Ref ID' = tblBestellungRecord.ID)); /*LA*/
+        ForAll(Filter(MaterialBst, MatRefID = gblAuftragRecord.ID) As tblBestellungRecord, RemoveIf(MaterialPOS, POSRefID = tblBestellungRecord.ID)); /*MaterialPOS*/
+        RemoveIf(Transport, AuftragsReferenzID = gblAuftragRecord.ID); /*Transport*/
+        RemoveIf(MaterialBst, MatRefID = gblAuftragRecord.ID); /*MaterialBst*/
+        RemoveIf(Kundenbestellungen, 'Ref ID' = gblAuftragRecord.ID); /*KundenBst*/
+        RemoveIf('Bemerkung Projekt', ProjektRefID = gblAuftragRecord.ID);
+        Remove(Neuer_Auftrag, gblAuftragRecord),
+        Notify("Fehler beim Archivieren, Bitte Eingaben überprüfen", NotificationType.Error)
+    ),
+    Notify("Fehler beim Speichern, Bitte Eingaben überprüfen", NotificationType.Error)
+);
+```
+
+**Erklärung:**
+
+Beim Klick speichert `SubmitForm(auftragsForm)` den Auftrag. Ist das erfolgreich, wird der Auftrag gespeichert, der `Archivierungs-Flow` wird gestartet und prüft, ob alles fehlerfrei war. Falls ja, zeigt `Notify` eine Erfolgsnachricht, und alle verbundenen Daten wie `Bestellungen`, `Anhänge` und `Bemerkungen` werden mit `RemoveIf` gelöscht. Bei Fehlern erscheint eine Fehlermeldung.
+
+#### **`Auftragseinganbestätigung`- Button**
+
+![img_36.png](img_36.png)
+
+```powerapps
+UpdateContext({locRequiredFieldsBool:true});
+If(
+    SubmitForm(auftragsForm),
+    Set(gblAuftragRecord, auftragsForm.LastSubmit);
+    UpdateContext({locSendMailPopupBool:true}),
+    Notify("Bitte Fehlende Informationen ergänzen", NotificationType.Error);
+ 
+)
+```
+
+Beim Klick wird zuerst `locRequiredFieldsBool` auf true gesetzt das aktiviert die Pflichtfeldprüfung. Danach versucht `SubmitForm`, das Auftragsformular zu speichern. War dies erfolgreich, wird der Datensatz in `gblAuftragRecord` gespeichert und das **E-Mail-Popup** `locSendMailPopupBool` geöffnet. Falls das Speichern fehlschlägt, zeigt `Notify` eine Fehlermeldung an.
+
+#### **`Erneut Signieren`- Button**
+
+![img_37.png](img_37.png)
+
+```powerapps
+Patch(Neuer_Auftrag, gblAuftragRecord, {Sig_abgeschlossen: 0, 'Sig. Kaufmann/-Frau': false, 'Sig. Verkäufer/in': false, Status: "Auftragseingangsbestätigung gesendet"});
+Refresh(Neuer_Auftrag);
+EditForm(signierungsForm)
+```
+Beim Klick wird der aktuelle Auftrag per `Patch` zurückgesetzt: Signaturen werden gelöscht `false`, Status auf **Auftragseingangsbestätigung gesendet** gesetzt und `Sig_abgeschlossen` auf `0`. Dann wird die Datenquelle aktualisiert `Refresh` und das **Signierungsformular** im Bearbeitungsmodus geöffnet `EditForm`.
+
+#### **Vorlage `KeyFinder`- Button**
+
+![img_38.png](img_38.png)
+
+```powerapps
+Download("https://siemensenergyag.sharepoint.com/:x:/r/sites/RC-CH-Workflow/Dokumente/Vorlagen_Powerapps/GT_KeyFinder.xlsx")
+```
+
+Beim Klick lädt `Download("https://...GT_KeyFinder.xlsx")` eine Excel-Vorlage direkt von `SharePoint` herunter. So kann man die Datei lokal speichern und verwenden **z.B.** als `Vorlage` oder `Arbeitshilfe`.
+
+## **7. Signierungs-Screen**
+
+![img_39.png](img_39.png)
+
+#### **`Attach File` Button**
+
+![img_40.png](img_40.png) ![img_41.png](img_41.png)
+
+Beim Klick öffnet sich das `Anlagen`- Feld, wo Nutzer Dateien hochladen können. Das Steuerelement ist automatisch mit dem Datenfeld `Attachments` verbunden, es braucht also keinen eigenen Code. Bestehende Anhänge werden über Default: `ThisItem.Attachments` angezeigt, und `DataField`: `{Attachments}` sorgt dafür, dass alles korrekt gespeichert wird.
+
+#### **`Auftragsbestätigung senden`- Button**
+
+![img_42.png](img_42.png)
+
+```powerapps
+UpdateContext({locRequiredFieldsBool:true});
+If(
+    SubmitForm(signierungsForm),
+    Set(
+        gblAuftragRecord,
+        signierungsForm.LastSubmit
+    );
+    UpdateContext({locSendMailPopupBool:true}),
+    Notify(
+        "Bitte Fehlende Informationen ergänzen",
+        NotificationType.Error
+    )
+)
+```
+
+Beim Klick prüft `SubmitForm(signierungsForm)` zuerst, ob das Formular ausgefüllt ist. Wenn ja, wird der Auftrag mit `Set(gblAuftragRecord,signierungsForm.LastSubmit)` gespeichert und `locSendMailPopupBool` auf `true` gesetzt das öffnet ein **Pop-up** zum Versenden der Bestätigung. Ist das Formular unvollständig, zeigt `Notify` eine Fehlermeldung.
+
+#### **`Speichern`- Button**
+
+![img_43.png](img_43.png)
+
+```powerapps
+If(
+    SubmitForm(signierungsForm),
+    Set(
+        gblAuftragRecord,
+        signierungsForm.LastSubmit
+    );
+    If(
+        IsEmpty(Errors(Neuer_Auftrag));
+        Notify(
+            "Success",
+            NotificationType.Success
+        );
+        Navigate(HomeScreen),
+        Notify(
+            First(Errors(Neuer_Auftrag)).Message,
+            NotificationType.Error
+        )
+    ),
+    Notify(
+        "Bitte Fehlende Informationen ergänzen",
+        NotificationType.Error
+    ))
+```
+
+Beim Klick wird das Formular gespeichert `(SubmitForm(signierungsForm))`. Wenn das klappt, wird der gespeicherte Auftrag übernommen `Set` und geprüft, ob es Fehler gibt `Errors`. Gibt es keine, wird eine Erfolgsnachricht gezeigt und zur Startseite gewechselt `Navigate`. Bei Fehlern wird die erste Fehlermeldung angezeigt. Falls das Speichern scheitert, erscheint ein Hinweis, dass Informationen fehlen.
+
+## **8. Bemerkungs-Screen**
+
+![img_44.png](img_44.png)
+
+#### **Erledigt Toggle**
+
+![img_45.png](img_45.png)
+
+```powerapps
+Patch( 'Bemerkung Projekt',
+        gblBemerkungRecord,
+        {Erledigt: false});
+ 
+Set(
+    gblBemerkungRecord,
+    LookUp('Bemerkung Projekt', ID = gblBemerkungRecord.ID)
+);        
+```
+
+Beim Klick wird der aktuelle Kommentar in der Liste **Bemerkung Projekt** mit `Patch` auf `Erledigt = false` gesetzt also als nicht erledigt markiert. Anschliessend wird `gblBemerkungRecord` mit dem neuen Stand der Bemerkung aktualisiert `LookUp(...)`, damit die App den aktuellen Datensatz kennt. Falls man den Toggle auf ja setzt, dann wird `Erledigt = true` sein.
+
+#### **`Lösch`- Button**
+
+![img_46.png](img_46.png)
+
+```powerapps
+If(
+    IsEmpty(Errors(Remove('Bemerkung Projekt', gblBemerkungRecord))),
+    Notify("Löschen erfolgreich", NotificationType.Success);
+    Set(gblBemerkungRecord, Blank());
+    Navigate(HomeScreen),
+    Notify("Fehler beim Löschen: " & First(Errors(Remove('Bemerkung Projekt', gblBemerkungRecord))).Message, NotificationType.Error)
+)
+```
+
+Beim Klick prüft `If(...)`, ob das Entfernen `Remove(...)` der Bemerkung ohne Fehler klappt. Falls ja, zeigt **Notify** `Löschen erfolgreich`, leert den gespeicherten Datensatz `Set(...)` und springt zurück zur Startseite `Navigate`. Passiert ein Fehler, wird eine Fehlermeldung mit `Notify` angezeigt inklusive genauer Fehlernachricht `First(...).Message`.
+
+#### **`Zurück`- Button**
+
+![img_47.png](img_47.png)
+
+```powerapps
+If(Value(Param("ScreenID"))=0, Back(),
+ 
+Navigate(
+    Switch(
+    Value(Param("ScreenID")),
+    1,
+    HomeScreen,
+ 
+    2,
+    AuftragScreen,
+ 
+    3,
+    MaterialBestellungScreen,
+ 
+    4,
+    SignierungScreen,
+ 
+    5,
+    BemerkungScreen,
+ 
+    6,
+    AuftragScreen,
+ 
+    HomeScreen
+ 
+)
+)
+)
+```
+
+Beim Klick prüft die **If-Abfrage**, ob der übergebene Parameter `ScreenID = 0` ist. In dem Fall wird einfach mit `Back()` zurück navigiert. Falls nicht, führt `Switch` abhängig vom Wert der `ScreenID` den passenden `Navigate`Befehl aus:
+> **z.B.** <p></p> 1 = HomeScreen, <p></p> 2 = AuftragScreen usw. <p></p>
+
+Damit kann man flexibel auf verschiedene Seiten springen, je nach Zahl im Parameter.
 
