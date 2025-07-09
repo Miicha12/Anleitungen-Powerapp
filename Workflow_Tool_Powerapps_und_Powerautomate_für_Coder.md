@@ -406,7 +406,6 @@ Bevor die App zur Startseite wechselt, werden alle relevanten SharePoint-Listen 
 
 ### **Button `Archiv`**
 
-![img_23.png](img_23.png)
 <img src="img_23.png" alt="img_23.png" style="width:200px;"/>
 
 ```powerapps
@@ -782,7 +781,6 @@ Damit kann man flexibel auf verschiedene Seiten springen, je nach Zahl im Parame
 
 #### **`Bestelländerung`- Button**
 
-![img_49.png](img_49.png)
 <img src="img_49.png" alt="img_49.png" style="width:200px;"/>
 
 ```powerapps
