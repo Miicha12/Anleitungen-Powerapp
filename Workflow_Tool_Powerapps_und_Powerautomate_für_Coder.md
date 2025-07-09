@@ -11,6 +11,7 @@
 7. Signierung-Screen
 8. Bemerkung-Screen
 9. Materialbestellung-Screen
+10. Mailvorlage-Screen
 
 
 ## **1. Grundlagen Powerapps**
@@ -31,6 +32,8 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
   > ***z. B.*** `Back()`
 - `Exit()`: Beendet die App.  
   > ***z. B.*** `Exit()`
+
+<div style="page-break-before: always;"></div>
 
 ### **Textfunktionen**
 - `Text()`: Formatiert eine Zahl oder ein Datum als Text.  
@@ -57,7 +60,8 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
   > ***z. B.*** `Rand()` gibt eine Zufallszahl wie 0.123456 zurück.
 - `Mod()`: Gibt den Rest einer Division zurück.  
   > ***z. B.*** `Mod(10, 3)` gibt 1 zurück, da 10 geteilt durch 3 einen Rest von 1 hat.
-  > 
+
+<div style="page-break-before: always;"></div>
 
 ### **Logikfunktionen**
 - `And()`, `Or()`, `Not()`: Logische Operatoren für Bedingungen.  
@@ -85,6 +89,7 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
   > ***z. B.*** `DateDiff(Today(), Date(2023, 12, 31), Days)` gibt die Anzahl der Tage bis zum 31. Dezember 2023 zurück.
 - `Year()`, `Month()`, `Day()`: Extrahieren Jahr, Monat oder Tag aus einem Datum.  
   > ***z. B.*** `Year(Today())` gibt das aktuelle Jahr zurück, `Month(Today())` den aktuellen Monat, `Day(Today())` den aktuellen Tag.
+  <div style="page-break-before: always;"></div>
 - `Weekday()`: Gibt den Wochentag eines Datums zurück (1 = Sonntag, 2 = Montag, ...).  
   > ***z. B.*** `Weekday(Today())` gibt den aktuellen Wochentag zurück.
 - `FormatDateTime()`: Formatiert ein Datum als Text.  
@@ -124,6 +129,7 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
 - `StartsWith()`, `EndsWith()`: Überprüfen, ob ein Text mit einem bestimmten Präfix oder Suffix beginnt oder endet.  
   > ***z. B.*** `StartsWith("Hallo", "Ha")` gibt `true` zurück, <p></p> `EndsWith("Hallo", "lo")` gibt ebenfalls `true` zurück.
 
+<div style="page-break-before: always;"></div>
 
 ## **2. Grundlagen des Einfügens von Elementen**
 
@@ -150,6 +156,8 @@ Damit man ein Element in Powerapps einfügen kann, muss man im Sharepoint das El
 
 - Unter `Properties` &rarr; `Display` &rarr; `Edit fields` &rarr; `Add fields` findest du ein erstelltes Feld
 - Wichtig zu beachten ist, dass du unter Data Source die richtige Sharepoint Liste anwählst und auf den Screen in die Form (Quadrat mit Violetter Umrandung) anklickst.
+
+<div style="page-break-before: always;"></div>
 
 ### **Gängige Feldtypen in PowerApps (basierend auf der Benutzeroberfläche)**
 
@@ -183,6 +191,8 @@ PowerApps bietet verschiedene Steuerelemente für due Dateneingabe und Navigatio
 
 Diese Feldtypen sind essenziell für die Dateneingabe und Steuerung in PowerApps. Eine sinnvolle Platzierung und Verwendung verbessert die Benutzerfreundlichkeit erheblich.
 
+<div style="page-break-before: always;"></div>
+
 ## **3. Legende von Properties**
 
 ![img_18.png](img_18.png)
@@ -199,6 +209,8 @@ In PowerApps gibt es **zwei Arten con eigenschaften**, die man einstellen kann:
 > ***z.B.*** wie das Element auf Klicks reagiert oder mit Daten verbunden ist.
 
 So kann man einfach steuern, **wie ein `Button` aussieht und wofür er zuständig ist** von einfach bis komplexen Funktionen.
+
+<div style="page-break-before: always;"></div>
 
 ### **Display-Eigenschaften**
 - **`Text`**: Der Text, der im `Element` oder `Button` angezeigt wird.  
@@ -268,6 +280,7 @@ So kann man einfach steuern, **wie ein `Button` aussieht und wofür er zuständi
   > ***z. B.*** `FocusedBorderColor = RGBA(0, 120, 215, 1)` für einen blauen Rahmen, wenn das Element fokussiert ist.
 - **`FocusedBorderThickness`**: Legt die Dicke des Rahmens fest, wenn das Element den Fokus hat.  
   > ***z. B.*** `FocusedBorderThickness = 2` für einen Rahmen mit einer Dicke von 2 Pixeln, wenn das Element fokussiert ist.
+  <div style="page-break-before: always;"></div>
 - **`Font`**: Bestimmt die Schriftart des Textes im Element.  
   > ***z. B.*** `Font = "Arial"` für die Schriftart Arial. <p></p>
   > ***z. B.*** `Font = "Calibri"` für die Schriftart Calibri. <p></p>
@@ -290,6 +303,7 @@ So kann man einfach steuern, **wie ein `Button` aussieht und wofür er zuständi
   > ***z. B.*** `HoverColor = RGBA(0, 0, 0, 1)` für schwarzen Text beim Hover-Effekt.
 - **`Italic`**: Legt fest, ob der Text kursiv dargestellt wird.  
   > ***z. B.*** `Italic = true` für kursiven Text, <p></p> `Italic = false` für normalen Text.
+  <div style="page-break-before: always;"></div>
 - **`PaddingBottom` / `PaddingLeft` / `PaddingRight` / `PaddingTop`**: Fügt Abstand um das Element herum hinzu.  
   > ***z. B.*** `PaddingBottom = 10`, <p></p> `PaddingLeft = 5`, <p></p> `PaddingRight = 5`, <p></p> `PaddingTop = 10` für einen Abstand von 10 Pixeln unten, 5 Pixeln links und rechts und 10 Pixeln oben.
 - **`PressedBorderColor`**: Bestimmt die Farbe des Rahmens, wenn das Element gedrückt wird.  
@@ -306,6 +320,7 @@ So kann man einfach steuern, **wie ein `Button` aussieht und wofür er zuständi
   > ***z. B.*** `Strikethrough = true` für durchgestrichenen Text, <p></p> `Strikethrough = false` für normalen Text.
 - **`TabIndex`**: Bestimmt die Tabulatorreihenfolge des Elements.  
   > ***z. B.*** `TabIndex = 1` für das erste Element in der Tabulatorreihenfolge.
+  <div style="page-break-before: always;"></div>
 - **`Underline`**: Legt fest, ob der Text unterstrichen wird.  
   > ***z. B.*** `Underline = true` für unterstrichenen Text, <p></p> `Underline = false` für normalen Text.
 - **`VerticalAlign`**: Bestimmt die vertikale Ausrichtung des Textes im Element.  
@@ -317,6 +332,8 @@ So kann man einfach steuern, **wie ein `Button` aussieht und wofür er zuständi
 - **`Visible`**: Legt fest, ob das Element sichtbar ist oder nicht.  
   > ***z. B.*** `Visible = true` für sichtbares Element, <p></p> `Visible = false` für unsichtbares Element.
 
+<div style="page-break-before: always;"></div>
+
 ## **4. App und Start-Screen**
 
 ![img_19.png](img_19.png)
@@ -326,6 +343,8 @@ App und Start-Screen zeigen den gleichen Screen an.
 ![img_20.png](img_20.png)
 
 Bei App unter `OnStart` befindet sich der Code, der beim Starten der App ausgeführt:
+
+<div style="page-break-before: always;"></div>
 
 ```powerapps
 Concurrent(
@@ -347,11 +366,13 @@ Beim Start der App werden zunächst globale Werte gesetzt, die über die `URL` a
 Gleichzeitig wird geprüft, ob der aktuell angemeldete Benutzer ein Administrator ist, indem dessen E-Mail-Adresse im Code abgeglichen wird. Diese Liste kann bei Bedarf erweitert oder angepasst werden, etwa wenn neue Werkstudenten dazukommen. <p></p>
 Parallel dazu werden Listen aus `SharePoint` geladen und in lokalen `Collections` gespeichert, die später in `Dropdowns` oder `Formularen` verwendet werden. Anschliessend wird anhand der übergebenen `ScreenID` entschieden, welcher Datensatz geladen werden soll. Bei einem `Auftrag` wird der zugehörige Eintrag direkt geladen, bei `Bestellungen` oder `Bemerkungen` werden zusätzlich verknüpfte Aufträge und gegebenenfalls weitere Informationen ermittelt und gespeichert. So stellt die App sicher, dass beim Öffnen sofort die richtigen Inhalte und Formulare angezeigt werden passend zum Kontext des Links.
 
+<div style="page-break-before: always;"></div>
+
 ### **`Buttons` vom Start-Screen**
 
 Die Codeblöcke sind unter dem `OnSelect` zu finden. `OnSelect` ist eine Eigenschaft in PowerApps, die bestimmt, **was passiert, wenn man auf ein Steuerelement klickt** **z.B.** auf einen `Button`, ein `Icon` oder ein `Bild`.
  
-![img_21.png](img_21.png)
+<img src="img_21.png" alt="img_21.png" style="width:200px;"/>
 
 ```powerapps
 Set(
@@ -368,7 +389,7 @@ Das Formular wird geleert, zurückgesetzt und in den `Neu erstellen`-Modus verse
 
 ### **Button `Übersicht`**
 
-![img_22.png](img_22.png)
+<img src="img_22.png" alt="img_22.png" style="width:200px;"/>
 
 ```powerapps
 Refresh(Neuer_Auftrag);
@@ -386,6 +407,7 @@ Bevor die App zur Startseite wechselt, werden alle relevanten SharePoint-Listen 
 ### **Button `Archiv`**
 
 ![img_23.png](img_23.png)
+<img src="img_23.png" alt="img_23.png" style="width:200px;"/>
 
 ```powerapps
 Navigate(ArchivScreen)
@@ -396,6 +418,8 @@ Mit diesem Button landet man im Archivbereich `ArchivScreen`
 ## **5. Home-Screen**
 
 ![img_24.png](img_24.png)
+
+<div style="page-break-before: always;"></div>
 
 ### **`Dropdown`-Menü Aufbau:**
 
@@ -414,8 +438,7 @@ Das Dropdown zeigt automatisch alle **eindeutigen** Projektleiter aus der Collec
 
 ### **`Filter`- Button**
 
-
-![img_27.png](img_27.png)
+<img src="img_27.png" alt="img_27.png" style="width:200px;"/>
 
 ```powerapps
 ClearCollect(colFilterData,
@@ -459,6 +482,8 @@ If(varShowID = ThisItem.ID,
 
 Dieser Code sorgt dafür, dass man einen Eintrag **z.B.** ein `Projekt` auf- und zuklappen kann. Wenn man auf den Eintrag klickt, wird gemerkt, welche `ID` dazugehört. Klickt man nochmal, wird er wieder zugeklappt. So zeigt die App nur bei einem Projekt die Detailinfos genau dem, das man angeklickt hat.
 
+<div style="page-break-before: always;"></div>
+
 #### **Materialbestellungskachel:**
 
 ![img_30.png](img_30.png)
@@ -492,6 +517,8 @@ SortByColumns(
 
 Der Code zeigt alle Bemerkungen, die zu einem bestimmten Projekt gehören `ProjektRefID = ThisItem.ID`, und sortiert sie so, dass die neueste Bemerkung ganz oben steht. So sieht man sofort den aktuellen Kommentar zum Projekt.
 
+<div style="page-break-before: always;"></div>
+
 #### **Transportkachel:**
 
 ![img_32.png](img_32.png)
@@ -507,13 +534,15 @@ Navigate(AuftragScreen, BorderStyle.None, {locTransportPopuoBool: true, locTrans
 ```
 Wenn man auf einen Transport klickt, merkt sich die App den zugehörigen Auftrag, öffnet ein Formular zum Bearbeiten und zeigt automatisch den passenden `Transport-Bereich` auf der nächsten Seite. So kann man direkt weiterarbeiten.
 
+<div style="page-break-before: always;"></div>
+
 ## **6. Auftrag-Screen**
 
 ![img_33.png](img_33.png)
 
 #### **`Auftragerfassung ablehnen`- Button**
 
-![img_34.png](img_34.png)
+<img src="img_34.png" alt="img_34.png" style="width:200px;"/>
 
 ```powerapps
 If(
@@ -539,7 +568,7 @@ Beim Klick speichert SubmitForm das Auftragsformular. Wenn erfolgreich, wird der
 
 #### **`Archivieren`- Button**
 
-![img_35.png](img_35.png)
+<img src="img_35.png" alt="img_35.png" style="width:200px;"/>
 
 ```powerapps
 If(
@@ -571,7 +600,7 @@ Beim Klick speichert `SubmitForm(auftragsForm)` den Auftrag. Ist das erfolgreich
 
 #### **`Auftragseinganbestätigung`- Button**
 
-![img_36.png](img_36.png)
+<img src="img_36.png" alt="img_36.png" style="width:200px;"/>
 
 ```powerapps
 UpdateContext({locRequiredFieldsBool:true});
@@ -588,7 +617,7 @@ Beim Klick wird zuerst `locRequiredFieldsBool` auf true gesetzt das aktiviert di
 
 #### **`Erneut Signieren`- Button**
 
-![img_37.png](img_37.png)
+<img src="img_37.png" alt="img_37.png" style="width:200px;"/>
 
 ```powerapps
 Patch(Neuer_Auftrag, gblAuftragRecord, {Sig_abgeschlossen: 0, 'Sig. Kaufmann/-Frau': false, 'Sig. Verkäufer/in': false, Status: "Auftragseingangsbestätigung gesendet"});
@@ -599,7 +628,7 @@ Beim Klick wird der aktuelle Auftrag per `Patch` zurückgesetzt: Signaturen werd
 
 #### **Vorlage `KeyFinder`- Button**
 
-![img_38.png](img_38.png)
+<img src="img_38.png" alt="img_38.png" style="width:200px;"/>
 
 ```powerapps
 Download("https://siemensenergyag.sharepoint.com/:x:/r/sites/RC-CH-Workflow/Dokumente/Vorlagen_Powerapps/GT_KeyFinder.xlsx")
@@ -619,7 +648,7 @@ Beim Klick öffnet sich das `Anlagen`- Feld, wo Nutzer Dateien hochladen können
 
 #### **`Auftragsbestätigung senden`- Button**
 
-![img_42.png](img_42.png)
+<img src="img_42.png" alt="img_42.png" style="width:200px;"/>
 
 ```powerapps
 UpdateContext({locRequiredFieldsBool:true});
@@ -676,7 +705,7 @@ Beim Klick wird das Formular gespeichert `(SubmitForm(signierungsForm))`. Wenn d
 
 #### **Erledigt Toggle**
 
-![img_45.png](img_45.png)
+<img src="img_45.png" alt="img_45.png" style="width:200px;"/>
 
 ```powerapps
 Patch( 'Bemerkung Projekt',
@@ -754,6 +783,7 @@ Damit kann man flexibel auf verschiedene Seiten springen, je nach Zahl im Parame
 #### **`Bestelländerung`- Button**
 
 ![img_49.png](img_49.png)
+<img src="img_49.png" alt="img_49.png" style="width:200px;"/>
 
 ```powerapps
 UpdateContext({locRequiredFieldsBool1:true});
@@ -862,12 +892,53 @@ If(
 
 Beim Klick wird `SubmitForm(materialBstForm)` ausgeführt und die Bestellung gespeichert. Danach startet der **Flow** `ErfassungsbestaetigungFunktionsaccount.Run(...)`. Funktioniert alles, setzt Patch den Bestellstatus auf `IB erfasst` und markiert den Auftrag als `erfasst` oder `IB zur Bearbeitung`. Bei Fehlern erscheint eine `Notify`-Meldung.
 
-#### **`AUftrag erfassen`- Button**
+#### **`Auftrag erfassen`- Button**
 
 ![img_52.png](img_52.png)
 
 ```powerapps
-
+If(
+    SubmitForm(materialBstForm),
+    Set(
+        gblBestellungRecord,
+        materialBstForm.LastSubmit
+    );
+    UpdateContext({locFlowResponse:ErfassungsbestätigungFunktionsaccount.Run(gblAuftragRecord.ID,gblBestellungRecord.ID)});
+    If(
+        IsEmpty(Errors(MaterialBst)) && locFlowResponse.succeeded,
+        Notify(
+            "Bestellung erfolgreich erfasst, Logistik benachrichtigt",
+            NotificationType.Success
+        );
+        Patch(
+            MaterialBst,
+            gblBestellungRecord,
+            {Status: "MB erfasst"}
+        );
+        Patch(
+            Neuer_Auftrag,
+            gblAuftragRecord,
+            {'Auftragserfassung Complete': true}
+        );
+        If(
+            gblAuftragRecord.Status = "Abgelehnt" || gblAuftragRecord.Status = "WF angelegt",
+            Patch(
+                Neuer_Auftrag,
+                gblAuftragRecord,
+                {Status: "WF zur Bearbeitung"}
+            )
+        );
+        Navigate(HomeScreen),
+        Notify(
+            "Email wurde nicht gesendet, bitte Eingaben überpfrüfen",
+            NotificationType.Error
+        )
+    ),
+    Notify(
+        "Bitte Fehlende Informationen ergänzen",
+        NotificationType.Error
+    )
+)
 ```
 
 Beim Klick speichert `SubmitForm(materialBstForm)` die Bestellung. Danach ruft `ErfassungsbestaetigungFunktionsaccount.Run(...)` einen **Flow** auf. Treten keine Fehler auf `IsEmpty(Errors(...))` und war der **Flow** erfolgreich `locFlowResponse.succeeded`, wird die Bestellung mit **Patch** auf Status `IB erfasst` gesetzt. Parallel wird der Auftrag als `erfasst` markiert. Falls der Auftrag vorher `Abgelehnt` oder `IB angelegt` war, wird er mit **Patch** auf `IB zur Bearbeitung` gesetzt. Bei Problemen zeigt `Notify` eine Fehlermeldung.
@@ -915,4 +986,178 @@ If(
 Beim Klick wird zuerst `UpdateContext({locRequiredFieldsBool1:true})` gesetzt. Das markiert Pflichtfelder. Danach versucht `SubmitForm(materialBstForm)` die Bestellung zu speichern. Bei Erfolg wird die Bestellung in `gblBestellungRecord` gespeichert und `locSendMailPopupBool` aktiviert `Popup für E-Mail`. Schlägt das Speichern fehl, erscheint per `Notify` eine Fehlermeldung.
 
 #### **`Lieferantenbestellung senden`- Button**
+
+![img_55.png](img_55.png)
+
+```powerapps
+UpdateContext({locRequiredFieldsBool1:true});
+If(
+    SubmitForm(materialBstForm),
+    Set(
+        gblBestellungRecord,
+        materialBstForm.LastSubmit
+    );
+    UpdateContext({locSendMailPopupBool:true}),    
+    Notify(
+        "Bitte Fehlende Informationen ergänzen",
+        NotificationType.Error
+    )
+)
+```
+
+Beim Klick wird zuerst `UpdateContext({locRequiredFieldsBool1:true})` gesetzt. Das markiert Pflichtfelder. Dann versucht `SubmitForm(materialBstForm)` die Bestellung zu speichern. Bei Erfolg wird die Bestellung in `gblBestellungRecord` gespeichert und `locSendMailPopupBool` aktiviert **Popup für E-Mail**. Schlägt das Speichern fehl, erscheint per `Notify` eine Fehlermeldung.
+
+#### **`Bestellung erfassen`- Button**
+
+![img_56.png](img_56.png)
+
+```powerapps
+If(
+    SubmitForm(materialBstForm),
+    Set(
+        gblBestellungRecord,
+        materialBstForm.LastSubmit
+    );
+    UpdateContext({locFlowResponse:ErfassungsbestätigungFunktionsaccount.Run(gblAuftragRecord.ID,gblBestellungRecord.ID)});
+    If(
+        IsEmpty(Errors(MaterialBst)) && locFlowResponse.succeeded,
+        Notify(
+            "Bestellung erfolgreich erfasst, Logistik benachrichtigt",
+            NotificationType.Success
+        );
+        Patch(
+            MaterialBst,
+            gblBestellungRecord,
+            {Status: "MB erfasst"}
+        );
+        Patch(
+            Neuer_Auftrag,
+            gblAuftragRecord,
+            {'Auftragserfassung Complete': true}
+        );
+        If(
+            gblAuftragRecord.Status = "Abgelehnt" || gblAuftragRecord.Status = "WF angelegt",
+            Patch(
+                Neuer_Auftrag,
+                gblAuftragRecord,
+                {Status: "WF zur Bearbeitung"}
+            )
+        );
+        Navigate(HomeScreen),
+        Notify(
+            "Email wurde nicht gesendet, bitte Eingaben überpfrüfen",
+            NotificationType.Error
+        )
+    ),
+    Notify(
+        "Bitte Fehlende Informationen ergänzen",
+        NotificationType.Error
+    )
+)
+```
+
+Beim Klick speichert `SubmitForm(materialBstForm)` die Bestellung. War dies erfolgreich, wird `gblBestellungRecord` gesetzt und ein Flow `ErfassungsbestätigungFunktionsaccount.Run` wird gestartet. Ist der Flow erfolgreich und keine Fehler in `MaterialBst`, zeigt `Notify` eine Erfolgsmeldung, Patch setzt den Status der Bestellung auf **MB erfasst** und im Auftrag **Auftragserfassung Complete** auf `true`. Falls nötig, wird auch der Auftragsstatus auf **"WF zur Bearbeitung"** geändert. Am Ende `Navigate(HomeScreen)` zur Startseite. Bei Fehlern erscheinen passende `Notify`-Meldungen.
+
+#### **`Reminder senden`- Button**
+
+![img_57.png](img_57.png)
+
+```powerapps
+ReminderLieferantenbestaetigungFunktionsaccount.Run(gblBestellungRecord.ID)
+```
+
+Beim Klick wird nur der Flow `ReminderLieferantenbestaetigungFunktionsaccount.Run(gblBestellungRecord.ID)` ausgeführt, das heisst: Ein Reminder zur Lieferantenbestätigung wird verschickt, und zwar für die Bestellung mit der `ID` aus `gblBestellungRecord`. Kein Formular, keine Prüfung, keine Rückmeldung. Nur der Flow wird gestartet.
+
+## **10. Mailvorlage-Screen**
+
+![img_58.png](img_58.png)
+
+#### **`Abschicken`- Button**
+
+![img_59.png](img_59.png)
+
+```powerapps
+If(
+    SubmitForm(MailvorForm),
+    Set(
+        gblMailvorlageRecord,
+        MailvorForm.LastSubmit
+    );
+    Patch(
+            Mailvorlage,
+            gblMailvorlageRecord,
+            {
+                BestellungsReferenzID:gblBestellungRecord.ID,
+                Title:
+                    Switch(
+                        gblMailvorlageRecord.Kategorie.Value,
+                        "Verzollungsinstruktion", "Verzollungsinstruktion an " & gblMailvorlageRecord.Mailadresse,
+                        "Warenempfänger bestätigen", "Warenempfänger / Ihre Bestellung "&gblBestellungRecord.Bestellnummer&" /Mail "&gblMailvorlageRecord.Mailadresse& "/ SD-/Projekt-Nr "& gblBestellungRecord.'SD-/Projekt-Nr.',
+                        "Technische Zeichnung prüfen", "Bitte um Prüfung und Freigabe techn, Dokumente / Ihre Bestellung  "&gblBestellungRecord.Bestellnummer&" /Mail "&
+                        gblMailvorlageRecord.Mailadresse,
+                        "Neuer Kreditor", "Eröffnungsdaten neuer Kreditor an "& gblMailvorlageRecord.Mailadresse
+                    ),
+                /*Kundenreferenz: LookUp(Neuer_Auftrag, ID = gblBestellungRecord.MatRefID).Kundenreferenz,
+                Materialbestellung:gblBestellungRecord.Bestellnummer,
+                Lieferantenangebot:gblBestellungRecord.Lieferantengangebot, */
+                Warenempfänger: gblBestellungRecord.Anlieferadresse,
+                Versanddatum:  Today()
+            }
+        );
+ 
+    UpdateContext(
+        {
+            locFlowResponse:
+            Switch(
+                gblMailvorlageRecord.Kategorie.Value,
+                "Neuer Kreditor", Mailvorlage_Neuer_Kreditor_Thivi.Run(gblMailvorlageRecord.ID, gblBestellungRecord.ID),
+                "Technische Zeichnung prüfen",Mailvorlage_Technische_Zeichnung_Thivi.Run(gblMailvorlageRecord.ID, gblBestellungRecord.ID),
+                "Verzollungsinstruktion", Mailvorlage_Verzollungsinstruktion_Thivi.Run(gblMailvorlageRecord.ID, gblBestellungRecord.ID),
+                "Warenempfänger bestätigen", Mailvorlage_Warenempfaenger_Thivi.Run(gblMailvorlageRecord.ID, gblBestellungRecord.ID)
+            )
+        }
+    );
+ 
+    If(
+        IsEmpty(Errors(Mailvorlage)),
+        Notify(
+            "Speichern erfolgreich",
+            NotificationType.Success
+        );
+       
+ 
+        Back(),
+        Notify(
+            "Fehler beim Speichern",
+            NotificationType.Error
+        )
+    ),
+    Notify(
+        "Bitte Fehlende Informationen ergänzen",
+        NotificationType.Error
+    )
+)
+```
+
+Beim Klick wird zuerst das Formular `MailvorForm` gespeichert. Wenn das klappt, wird der Datensatz `gblMailvorlageRecord` gesetzt und über `Patch()` mit Infos aus `gblBestellungRecord` ergänzt. **Z.B.** mit **Bestellnummer, Mailadresse und Versanddatum**. Dann wird abhängig von der gewählten Kategorie ein passender Flow gestartet `Mailvorlage_*_Thivi.Run(...)`, etwa für **Neuer Kreditor** oder **Verzollungsinstruktion**. Am Ende prüft `IsEmpty(Errors(...))`, ob alles erfolgreich war. Bei Erfolg folgt `Notify("Speichern erfolgreich")` und ein `Back()` zur vorherigen Seite sonst erscheint eine Fehlermeldung.
+
+#### **Collection Mailvorlage**
+
+![img_60.png](img_60.png) ![img_61.png](img_61.png)
+
+Die Liste zeigt Auswahlmöglichkeiten für verschiedene Mailvorlagen. Jede Zeile steht für eine bestimmte Kategorie wie **Warenempfangsbestätigung an**, **Technische Zeichnung prüfen an** oder **Eröffnungsdaten neuer Kreditor an**. Klickt man auf einen Eintrag (über den Pfeil), kann man zur entsprechenden Mailmaske oder Detailansicht navigieren.
+
+#### **`gblMailvorlageRecord` (Datensatz)**
+
+![img_62.png](img_62.png)
+
+```powerapps
+Set(
+    gblMailvorlageRecord,
+    ThisItem
+);
+ViewForm(MailvorForm);
+```
+
+Beim Klick auf **Warenempfangsbestätigung an** wird der aktuell ausgewählte Eintrag `ThisItem` über `Set(...)` im Speicher `gblMailvorlageRecord` hinterlegt. Danach zeigt `ViewForm(MailvorForm)` das zugehörige Formular im Ansichtsmodus an.
 
