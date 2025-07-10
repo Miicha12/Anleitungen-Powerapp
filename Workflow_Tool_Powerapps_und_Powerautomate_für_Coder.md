@@ -346,7 +346,7 @@ Bei App unter `OnStart` befindet sich der Code, der beim Starten der App ausgef�
 
 <div style="page-break-before: always;"></div>
 
-```powerapps
+```java
 Concurrent(
   Set(gblLinkID, Value(Param("varFormDataID"))),
   Set(gblScreenID, Value(Param("ScreenID"))),
@@ -374,7 +374,7 @@ Die Codeblöcke sind unter dem `OnSelect` zu finden. `OnSelect` ist eine Eigensc
  
 <img src="img_21.png" alt="img_21.png" style="width:200px;"/>
 
-```powerapps
+```java
 Set(
     gblAuftragRecord,
     Blank()
@@ -391,7 +391,7 @@ Das Formular wird geleert, zurückgesetzt und in den `Neu erstellen`-Modus verse
 
 <img src="img_22.png" alt="img_22.png" style="width:200px;"/>
 
-```powerapps
+```java
 Refresh(Neuer_Auftrag);
 Refresh(MaterialBst);
 Refresh(Kundenbestellungen);
@@ -408,7 +408,7 @@ Bevor die App zur Startseite wechselt, werden alle relevanten SharePoint-Listen 
 
 <img src="img_23.png" alt="img_23.png" style="width:200px;"/>
 
-```powerapps
+```java
 Navigate(ArchivScreen)
 ```
 
@@ -428,7 +428,7 @@ Um aufzuzeigen, wie das `Dropdown`-Menü funktioniert, nutzen wir das Beispiel e
 
 ![img_26.png](img_26.png)
 
-```powerapps
+```java
 ForAll(Distinct(colAuftragData, Projektleiter), {Result: ThisRecord.Value})
 ```
 
@@ -437,9 +437,9 @@ Das Dropdown zeigt automatisch alle **eindeutigen** Projektleiter aus der Collec
 
 ### **`Filter`- Button**
 
-<img src="img_27.png" alt="img_27.png" style="width:200px;"/>
+<img src="img_27.png" alt="img_27.png" style="width:100px;"/>
 
-```powerapps
+```java
 ClearCollect(colFilterData,
               SortByColumns(Search(Filter(colAuftragData,
               IsBlank(cbProjektleiterFilter.Selected.Result) || Projektleiter = cbProjektleiterFilter.Selected.Result,
@@ -455,9 +455,9 @@ Beim Klick auf `Filtern` durchsucht die App die Collection mit allen Aufträgen.
 
 ### **`Radierer`- Button**
 
-![img_28.png](img_28.png)
+<img src="img_28.png" alt="img_28.png" style="width:100px;"/>
 
-```powerapps
+```java
 ClearCollect(colFilterDaata, Neuer_Auftrag);
 Reset(cbAuftragsstatusFilter);
 Reset(comboBoxMBStatusFilter);
@@ -472,7 +472,7 @@ Beim Klick auf das `Radiergummi` wird der Filter vollständig zurückgesetzt: Di
 
 ![img_29.png](img_29.png)
 
-```powerapps
+```java
 If(varShowID = ThisItem.ID, 
     Set(varShowID, 0), 
     Set(varShowID, ThisItem.ID)
@@ -487,7 +487,7 @@ Dieser Code sorgt dafür, dass man einen Eintrag **z.B.** ein `Projekt` auf- und
 
 ![img_30.png](img_30.png)
 
-```powerapps
+```java
 SortByColumns(
     Filter(
         MaterialBst, MatRefID = This.Item.ID
@@ -503,7 +503,7 @@ Der Code sucht alle Bestellungen `MaterialBst`, die zu einem bestimmten Projekt 
 
 ![img_31.png](img_31.png)
 
-```powerapps
+```java
 SortByColumns(
     Filter(
         'Bemerkung Projekt',
@@ -522,7 +522,7 @@ Der Code zeigt alle Bemerkungen, die zu einem bestimmten Projekt gehören `Proje
 
 ![img_32.png](img_32.png)
 
-```powerapps
+```java
 Set(
     gblTransportRecord,
     gblAuftragsInfo.Selected
@@ -543,7 +543,7 @@ Wenn man auf einen Transport klickt, merkt sich die App den zugehörigen Auftrag
 
 <img src="img_34.png" alt="img_34.png" style="width:200px;"/>
 
-```powerapps
+```java
 If(
     SubmitForm(auftragsForm),
     Set(
@@ -569,7 +569,7 @@ Beim Klick speichert SubmitForm das Auftragsformular. Wenn erfolgreich, wird der
 
 <img src="img_35.png" alt="img_35.png" style="width:200px;"/>
 
-```powerapps
+```java
 If(
     SubmitForm(auftragsForm),
     Set(
@@ -597,11 +597,13 @@ If(
 
 Beim Klick speichert `SubmitForm(auftragsForm)` den Auftrag. Ist das erfolgreich, wird der Auftrag gespeichert, der `Archivierungs-Flow` wird gestartet und prüft, ob alles fehlerfrei war. Falls ja, zeigt `Notify` eine Erfolgsnachricht, und alle verbundenen Daten wie `Bestellungen`, `Anhänge` und `Bemerkungen` werden mit `RemoveIf` gelöscht. Bei Fehlern erscheint eine Fehlermeldung.
 
+<div style="page-break-before: always;"></div>
+
 #### **`Auftragseinganbestätigung`- Button**
 
 <img src="img_36.png" alt="img_36.png" style="width:200px;"/>
 
-```powerapps
+```java
 UpdateContext({locRequiredFieldsBool:true});
 If(
     SubmitForm(auftragsForm),
@@ -618,22 +620,26 @@ Beim Klick wird zuerst `locRequiredFieldsBool` auf true gesetzt das aktiviert di
 
 <img src="img_37.png" alt="img_37.png" style="width:200px;"/>
 
-```powerapps
+```java
 Patch(Neuer_Auftrag, gblAuftragRecord, {Sig_abgeschlossen: 0, 'Sig. Kaufmann/-Frau': false, 'Sig. Verkäufer/in': false, Status: "Auftragseingangsbestätigung gesendet"});
 Refresh(Neuer_Auftrag);
 EditForm(signierungsForm)
 ```
 Beim Klick wird der aktuelle Auftrag per `Patch` zurückgesetzt: Signaturen werden gelöscht `false`, Status auf **Auftragseingangsbestätigung gesendet** gesetzt und `Sig_abgeschlossen` auf `0`. Dann wird die Datenquelle aktualisiert `Refresh` und das **Signierungsformular** im Bearbeitungsmodus geöffnet `EditForm`.
 
+<div style="page-break-before: always;"></div>
+
 #### **Vorlage `KeyFinder`- Button**
 
-<img src="img_38.png" alt="img_38.png" style="width:200px;"/>
+<img src="img_38.png" alt="img_38.png" style="width:100px;"/>
 
-```powerapps
+```java
 Download("https://siemensenergyag.sharepoint.com/:x:/r/sites/RC-CH-Workflow/Dokumente/Vorlagen_Powerapps/GT_KeyFinder.xlsx")
 ```
 
 Beim Klick lädt `Download("https://...GT_KeyFinder.xlsx")` eine Excel-Vorlage direkt von `SharePoint` herunter. So kann man die Datei lokal speichern und verwenden **z.B.** als `Vorlage` oder `Arbeitshilfe`.
+
+<div style="page-break-before: always;"></div>
 
 ## **7. Signierungs-Screen**
 
@@ -641,15 +647,17 @@ Beim Klick lädt `Download("https://...GT_KeyFinder.xlsx")` eine Excel-Vorlage d
 
 #### **`Attach File` Button**
 
-![img_40.png](img_40.png) ![img_41.png](img_41.png)
+<img src="img_40.png" alt="img_40.png" style="width:200px;"/> <img src="img_41.png" alt="img_41.png" style="width:200px;"/>
 
 Beim Klick öffnet sich das `Anlagen`- Feld, wo Nutzer Dateien hochladen können. Das Steuerelement ist automatisch mit dem Datenfeld `Attachments` verbunden, es braucht also keinen eigenen Code. Bestehende Anhänge werden über Default: `ThisItem.Attachments` angezeigt, und `DataField`: `{Attachments}` sorgt dafür, dass alles korrekt gespeichert wird.
+
+<div style="page-break-before: always;"></div>
 
 #### **`Auftragsbestätigung senden`- Button**
 
 <img src="img_42.png" alt="img_42.png" style="width:200px;"/>
 
-```powerapps
+```java
 UpdateContext({locRequiredFieldsBool:true});
 If(
     SubmitForm(signierungsForm),
@@ -667,11 +675,13 @@ If(
 
 Beim Klick prüft `SubmitForm(signierungsForm)` zuerst, ob das Formular ausgefüllt ist. Wenn ja, wird der Auftrag mit `Set(gblAuftragRecord,signierungsForm.LastSubmit)` gespeichert und `locSendMailPopupBool` auf `true` gesetzt das öffnet ein **Pop-up** zum Versenden der Bestätigung. Ist das Formular unvollständig, zeigt `Notify` eine Fehlermeldung.
 
+<div style="page-break-before: always;"></div>
+
 #### **`Speichern`- Button**
 
-![img_43.png](img_43.png)
+<img src="img_43.png" alt="img_43.png" style="width:100px;"/>
 
-```powerapps
+```java
 If(
     SubmitForm(signierungsForm),
     Set(
@@ -698,6 +708,8 @@ If(
 
 Beim Klick wird das Formular gespeichert `(SubmitForm(signierungsForm))`. Wenn das klappt, wird der gespeicherte Auftrag übernommen `Set` und geprüft, ob es Fehler gibt `Errors`. Gibt es keine, wird eine Erfolgsnachricht gezeigt und zur Startseite gewechselt `Navigate`. Bei Fehlern wird die erste Fehlermeldung angezeigt. Falls das Speichern scheitert, erscheint ein Hinweis, dass Informationen fehlen.
 
+<div style="page-break-before: always;"></div>
+
 ## **8. Bemerkungs-Screen**
 
 ![img_44.png](img_44.png)
@@ -706,7 +718,7 @@ Beim Klick wird das Formular gespeichert `(SubmitForm(signierungsForm))`. Wenn d
 
 <img src="img_45.png" alt="img_45.png" style="width:200px;"/>
 
-```powerapps
+```java
 Patch( 'Bemerkung Projekt',
         gblBemerkungRecord,
         {Erledigt: false});
@@ -719,11 +731,13 @@ Set(
 
 Beim Klick wird der aktuelle Kommentar in der Liste **Bemerkung Projekt** mit `Patch` auf `Erledigt = false` gesetzt also als nicht erledigt markiert. Anschliessend wird `gblBemerkungRecord` mit dem neuen Stand der Bemerkung aktualisiert `LookUp(...)`, damit die App den aktuellen Datensatz kennt. Falls man den Toggle auf ja setzt, dann wird `Erledigt = true` sein.
 
+<div style="page-break-before: always;"></div>
+
 #### **`Lösch`- Button**
 
-![img_46.png](img_46.png)
+<img src="img_46.png" alt="img_46.png" style="width:100px;"/>
 
-```powerapps
+```java
 If(
     IsEmpty(Errors(Remove('Bemerkung Projekt', gblBemerkungRecord))),
     Notify("Löschen erfolgreich", NotificationType.Success);
@@ -735,11 +749,13 @@ If(
 
 Beim Klick prüft `If(...)`, ob das Entfernen `Remove(...)` der Bemerkung ohne Fehler klappt. Falls ja, zeigt **Notify** `Löschen erfolgreich`, leert den gespeicherten Datensatz `Set(...)` und springt zurück zur Startseite `Navigate`. Passiert ein Fehler, wird eine Fehlermeldung mit `Notify` angezeigt inklusive genauer Fehlernachricht `First(...).Message`.
 
+<div style="page-break-before: always;"></div>
+
 #### **`Zurück`- Button**
 
-![img_47.png](img_47.png)
+<img src="img_47.png" alt="img_47.png" style="width:100px;"/>
 
-```powerapps
+```java
 If(Value(Param("ScreenID"))=0, Back(),
  
 Navigate(
@@ -765,15 +781,15 @@ Navigate(
  
     HomeScreen
  
-)
-)
-)
+)))
 ```
 
 Beim Klick prüft die **If-Abfrage**, ob der übergebene Parameter `ScreenID = 0` ist. In dem Fall wird einfach mit `Back()` zurück navigiert. Falls nicht, führt `Switch` abhängig vom Wert der `ScreenID` den passenden `Navigate`Befehl aus:
 > **z.B.** <p></p> 1 = HomeScreen, <p></p> 2 = AuftragScreen usw. <p></p>
 
 Damit kann man flexibel auf verschiedene Seiten springen, je nach Zahl im Parameter.
+
+<div style="page-break-before: always;"></div>
 
 ## **9. Materialbestellung-Screen**
 
@@ -783,7 +799,7 @@ Damit kann man flexibel auf verschiedene Seiten springen, je nach Zahl im Parame
 
 <img src="img_49.png" alt="img_49.png" style="width:200px;"/>
 
-```powerapps
+```java
 UpdateContext({locRequiredFieldsBool1:true});
 UpdateContext({locBstAenderungBool: true});
 If(
@@ -802,11 +818,11 @@ If(
 
 Beim Klick auf den `Bestelländerung`-Button wird zuerst `locRequiredFieldsBool` und `locBstAenderungBool` auf `true` gesetzt das aktiviert Pflichtfeldprüfungen und markiert den Vorgang als Änderung. Danach wird `SubmitForm(materialBstForm)` ausgeführt, um die Bestellung zu speichern. War dies erfolgreich, wird die gespeicherte Bestellung in `gblBestellungRecord` gespeichert und `locSendMailPopupBool` aktiviert, um das **Mail-Fenster** zu öffnen. Falls das Speichern fehlschlägt, zeigt `Notify` eine Fehlermeldung.
 
-#### **`LIeferantenbestätigung erhalten`- Button**
+#### **`Lieferantenbestätigung erhalten`- Button**
 
-![img_50.png](img_50.png)
+<img src="img_50.png" alt="img_50.png" style="width:200px;"/>
 
-```powerapps
+```java
 UpdateContext({locRequiredFieldsBool2:true});
 If(
     SubmitForm(materialBstForm),
@@ -839,11 +855,13 @@ If(
 
 Beim Klick auf den `Lieferantenbestätigung erhalten`-Button prüft `SubmitForm(materialBstForm)`, ob das Formular korrekt ausgefüllt ist. Ist das erfolgreich, wird die Bestellung in `gblBestellungRecord` gespeichert. Danach wird ein **Flow** `MailingBestellstatusMailing` gestartet, um Projektleiter per E-Mail zu informieren. War der Flow erfolgreich, wird der Status der Bestellung auf `Status auf erhalten` gesetzt und eine Erfolgsnachricht angezeigt. Falls der Flow oder das Speichern fehlschlägt, wird eine passende Fehlermeldung mit `Notify` angezeigt.
 
+<div style="page-break-before: always;"></div>
+
 #### **`Auftrag & Bestellung erfassen`- Button**
 
-![img_51.png](img_51.png)
+<img src="img_51.png" alt="img_51.png" style="width:200px;"/>
 
-```powerapps
+```java
 If(
     SubmitForm(materialBstForm),
     Set(
@@ -892,9 +910,9 @@ Beim Klick wird `SubmitForm(materialBstForm)` ausgeführt und die Bestellung ges
 
 #### **`Auftrag erfassen`- Button**
 
-![img_52.png](img_52.png)
+<img src="img_52.png" alt="img_52.png" style="width:200px;"/>
 
-```powerapps
+```java
 If(
     SubmitForm(materialBstForm),
     Set(
@@ -943,9 +961,9 @@ Beim Klick speichert `SubmitForm(materialBstForm)` die Bestellung. Danach ruft `
 
 #### **`Materialbestellung ablehnen`- Button**
 
-![img_53.png](img_53.png)
+<img src="img_53.png" alt="img_53.png" style="width:200px;"/>
 
-```powerapps
+```java
 SubmitForm(materialBstForm);
 Set(
     gblBemerkungRecord,
@@ -961,11 +979,13 @@ Navigate(BemerkungScreen, BorderStyle.None, {locBemerkungTyp:1});
 
 Beim Klick wird zuerst das Formular `materialBstForm` mit `SubmitForm()` gespeichert. Danach wird die globale Variable `gblBemerkungRecord` auf leer gesetzt `Blank()`, um alte Bemerkungen zu löschen. Mit `Set(gblBestellungRecord, materialBstForm.LastSubmit)` wird die gerade gespeicherte Bestellung in einer Variablen gespeichert. Anschliessend wird mit `NewForm(bemerkungsForm)` ein neues Bemerkungsformular geöffnet und mit `Navigate(BemerkungScreen, ..., {locBemerkungTyp:1})` zur Bemerkungsseite navigiert mit dem Hinweis, dass es sich um eine Ablehnung handelt `locBemerkungTyp:1`.
 
+<div style="page-break-before: always;"></div>
+
 #### **`Lieferantenbestellung senden`- Button**
 
-![img_54.png](img_54.png)
+<img src="img_54.png" alt="img_54.png" style="width:200px;"/>
 
-```powerapps
+```java
 UpdateContext({locRequiredFieldsBool1:true});
 If(
     SubmitForm(materialBstForm),
@@ -983,33 +1003,13 @@ If(
 
 Beim Klick wird zuerst `UpdateContext({locRequiredFieldsBool1:true})` gesetzt. Das markiert Pflichtfelder. Danach versucht `SubmitForm(materialBstForm)` die Bestellung zu speichern. Bei Erfolg wird die Bestellung in `gblBestellungRecord` gespeichert und `locSendMailPopupBool` aktiviert `Popup für E-Mail`. Schlägt das Speichern fehl, erscheint per `Notify` eine Fehlermeldung.
 
-#### **`Lieferantenbestellung senden`- Button**
-
-![img_55.png](img_55.png)
-
-```powerapps
-UpdateContext({locRequiredFieldsBool1:true});
-If(
-    SubmitForm(materialBstForm),
-    Set(
-        gblBestellungRecord,
-        materialBstForm.LastSubmit
-    );
-    UpdateContext({locSendMailPopupBool:true}),    
-    Notify(
-        "Bitte Fehlende Informationen ergänzen",
-        NotificationType.Error
-    )
-)
-```
-
-Beim Klick wird zuerst `UpdateContext({locRequiredFieldsBool1:true})` gesetzt. Das markiert Pflichtfelder. Dann versucht `SubmitForm(materialBstForm)` die Bestellung zu speichern. Bei Erfolg wird die Bestellung in `gblBestellungRecord` gespeichert und `locSendMailPopupBool` aktiviert **Popup für E-Mail**. Schlägt das Speichern fehl, erscheint per `Notify` eine Fehlermeldung.
+<div style="page-break-before: always;"></div>
 
 #### **`Bestellung erfassen`- Button**
 
-![img_56.png](img_56.png)
+<img src="img_56.png" alt="img_56.png" style="width:200px;"/>
 
-```powerapps
+```java
 If(
     SubmitForm(materialBstForm),
     Set(
@@ -1058,13 +1058,15 @@ Beim Klick speichert `SubmitForm(materialBstForm)` die Bestellung. War dies erfo
 
 #### **`Reminder senden`- Button**
 
-![img_57.png](img_57.png)
+<img src="img_57.png" alt="img_57.png" style="width:200px;"/>
 
-```powerapps
+```java
 ReminderLieferantenbestaetigungFunktionsaccount.Run(gblBestellungRecord.ID)
 ```
 
 Beim Klick wird nur der Flow `ReminderLieferantenbestaetigungFunktionsaccount.Run(gblBestellungRecord.ID)` ausgeführt, das heisst: Ein Reminder zur Lieferantenbestätigung wird verschickt, und zwar für die Bestellung mit der `ID` aus `gblBestellungRecord`. Kein Formular, keine Prüfung, keine Rückmeldung. Nur der Flow wird gestartet.
+
+<div style="page-break-before: always;"></div>
 
 ## **10. Mailvorlage-Screen**
 
@@ -1072,9 +1074,9 @@ Beim Klick wird nur der Flow `ReminderLieferantenbestaetigungFunktionsaccount.Ru
 
 #### **`Abschicken`- Button**
 
-![img_59.png](img_59.png)
+<img src="img_59.png" alt="img_59.png" style="width:200px;"/>
 
-```powerapps
+```java
 If(
     SubmitForm(MailvorForm),
     Set(
@@ -1145,11 +1147,13 @@ Beim Klick wird zuerst das Formular `MailvorForm` gespeichert. Wenn das klappt, 
 
 Die Liste zeigt Auswahlmöglichkeiten für verschiedene Mailvorlagen. Jede Zeile steht für eine bestimmte Kategorie wie **Warenempfangsbestätigung an**, **Technische Zeichnung prüfen an** oder **Eröffnungsdaten neuer Kreditor an**. Klickt man auf einen Eintrag (über den Pfeil), kann man zur entsprechenden Mailmaske oder Detailansicht navigieren.
 
+<div style="page-break-before: always;"></div>
+
 #### **`gblMailvorlageRecord` (Datensatz)**
 
 ![img_62.png](img_62.png)
 
-```powerapps
+```java
 Set(
     gblMailvorlageRecord,
     ThisItem
