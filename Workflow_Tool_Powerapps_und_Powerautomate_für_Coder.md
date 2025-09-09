@@ -3,7 +3,7 @@
 
 ## **Inhalt:**
 1. [Grundlagen Powerapps](#1-grundlagen-powerapps)
-2. [Grundlagen des Einfpgens von Elementen](#2-grundlagen-des-einfpgens-von-elementen)
+2. [Grundlagen des Einfügens von Elementen](#2-grundlagen-des-einfügens-von-elementen)
 3. [Legende von Properties](#3-legende-von-properties)
 4. [App und Start-Screen](#4-app-und-start-screen)
 5. [Home-Screen](#5-home-screen)
@@ -13,6 +13,7 @@
 9. [Materialbestellung-Screen](#9-materialbestellung-screen)
 10. [Mailvorlage-Screen](#10-mailvorlage-screen)
 
+<div style="page-break-before: always;"></div>
 
 ## **1. Grundlagen Powerapps**
 
@@ -403,6 +404,8 @@ Navigate(HomeScreen)
 ```
 
 Bevor die App zur Startseite wechselt, werden alle relevanten SharePoint-Listen aktualisiert wie beispielsweise etwa Aufträge, Bestellungen oder Bemerkungen. Dadurch wird sichergestellt, dass der Nutzer beim Zurückkehren auf dem neuesten Stand arbeitet und keine veralteten Daten sieht. Erst danach springt die App zur Startseite, damit alles frisch geladen ist.
+
+<div style="page-break-before: always;"></div>
 
 ### **Button `Archiv`**
 

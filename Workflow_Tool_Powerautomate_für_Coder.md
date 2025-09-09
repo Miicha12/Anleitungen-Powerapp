@@ -17,7 +17,7 @@ In diesem Kapitel werden die relevantesten Funktionen von Powerapps und Poweraut
 <img src="img_55.png" alt="img_55.png" style="width:200px;"/>
 
 Condition ist eine **Wenn-Bedingung**. Sie ermöglicht es, verschiedene Aktionen basierend auf bestimmten Bedingungen auszuführen.
-> **z.B.** ìf()` in PowerApps.
+> **z.B.** `if()` in PowerApps.
 
 Er bietet die Möglichkeit von zwei Pfaden, die ausgeführt werden, wenn die Bedingung erfüllt ist (True) oder nicht erfüllt ist (False).
 
@@ -33,6 +33,8 @@ Apply to each ist eine **Schleife**, die es ermöglicht, eine Aktion für jedes 
 
 Initialize variable ist eine **Variable**, die in Power Automate verwendet wird, um Werte zu speichern und zu verwalten.
 > **z.B.** `erstellt eine Variable mit dem Namen "myVariable" und dem Wert "Hello World"`.
+
+<div style="page-break-before: always;"></div>
 
 **`Set variable`:**
 
@@ -68,6 +70,8 @@ Get atttachments ist eine Aktion, die es ermöglicht, Anhänge von einer Liste (
 1. [ ] Get attachment content ist eine Aktion, die es ermöglicht, den Inhalt eines Anhangs zu erhalten.
 > **z.B.** `erhält den Inhalt des Anhangs "myAttachment"`.
 
+<div style="page-break-before: always;"></div>
+
 **`Respond to a PowerApp or flow`:**
 
 <img src="img_70.png" alt="img_70.png" style="width:200px;"/>
@@ -101,6 +105,8 @@ Manually trigger a flow ist eine Aktion, die es ermöglicht, einen Flow manuell 
 
 When a new email arrives ist eine Aktion, die es ermöglicht, einen Flow auszulösen, wenn eine neue E-Mail eintrifft.
 
+<div style="page-break-before: always;"></div>
+
 **`Recurrence`:**
 
 <img src="img_75.png" alt="img_75.png" style="width:200px;"/>
@@ -110,7 +116,7 @@ Recurrence ist eine Aktion, die es ermöglicht, einen Flow in regelmäßigen Abs
 
 <div style="page-break-before: always;"></div>
 
-### **2. Arbeiten mit Daten in Powerautomate**
+### **Arbeiten mit Daten in Powerautomate**
 
 **Aktionen** sind vergefertigte Bausteine in Power Automate, die du per Klick in einen Flow einfügen kannst. Sie ermöglichen es dir, verschiedene Aufgaben auszuführen, wie z.B. das Senden von E-Mails, das Abrufen von Daten aus einer Datenbank oder das Aktualisieren von Datensätzen in einer SharePoint-Liste.
 
@@ -154,6 +160,8 @@ Sie beginnen immer mit einem `@`-Zeichen und werden direkt in Feldern der Aktion
 - `Delete item`: Löscht automatisch einen Datensatz aus einer Datenquelle.
   > **z.B.** `löscht den Eintrag in der SharePoint-Liste "Bestellungen" mit der ID 123`.
   > @item()?['ID']
+
+<div style="page-break-before: always;"></div>
 
 - `Parse JSON`: Wandelt einen JSON-String in ein JSON-Objekt um, um auf die einzelnen Eigenschaften in Power Automate zugreifen zu können.
   > **z.B.** `wandelt den JSON-String '{"Name": "Max", "Alter": 30}' in ein JSON-Objekt um`.
