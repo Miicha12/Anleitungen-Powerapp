@@ -108,7 +108,7 @@ möchte
    6. Der Zugriff wird über den entsprechenden Link an die neue Person freigegeben.
    7. Nachdem die Person den Link anklickt, hat sie automatisch die Befugnisse.
 
-## **1. Grundlagen Powerapps**
+## **2. Grundlagen Powerapps**
 
 In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die Entwicklung von Apps in Powerapps erforderlich sind.
 
@@ -225,7 +225,7 @@ In diesem Kapitel werden die relevantesten Funktionen erläutert, die für die E
 
 <div style="page-break-before: always;"></div>
 
-## **2. Grundlagen des Einfügens von Elementen**
+## **3. Grundlagen des Einfügens von Elementen**
 
 In diesem Kapitel werden die Grundlagen des Einfügens von Elementen in Powerapps erläutert, einschliesslich der Verwendung von Steuerelementen und deren Eigenschaften.
 
@@ -287,7 +287,7 @@ Diese Feldtypen sind essenziell für die Dateneingabe und Steuerung in PowerApps
 
 <div style="page-break-before: always;"></div>
 
-## **3. Legende von Properties**
+## **4. Legende von Properties**
 
 ![img_18.png](img_18.png)
 
@@ -428,7 +428,7 @@ So kann man einfach steuern, **wie ein `Button` aussieht und wofür er zuständi
 
 <div style="page-break-before: always;"></div>
 
-## **4. App und Start-Screen**
+## **5. App und Start-Screen**
 
 ![img_19.png](img_19.png)
 
@@ -510,7 +510,7 @@ Navigate(ArchivScreen)
 
 Mit diesem Button landet man im Archivbereich `ArchivScreen`
 
-## **5. Home-Screen**
+## **6. Home-Screen**
 
 ![img_24.png](img_24.png)
 
@@ -631,7 +631,7 @@ Wenn man auf einen Transport klickt, merkt sich die App den zugehörigen Auftrag
 
 <div style="page-break-before: always;"></div>
 
-## **6. Auftrag-Screen**
+## **7. Auftrag-Screen**
 
 ![img_33.png](img_33.png)
 
@@ -737,7 +737,7 @@ Beim Klick lädt `Download("https://...GT_KeyFinder.xlsx")` eine Excel-Vorlage d
 
 <div style="page-break-before: always;"></div>
 
-## **7. Signierungs-Screen**
+## **8. Signierungs-Screen**
 
 ![img_39.png](img_39.png)
 
@@ -806,7 +806,7 @@ Beim Klick wird das Formular gespeichert `(SubmitForm(signierungsForm))`. Wenn d
 
 <div style="page-break-before: always;"></div>
 
-## **8. Bemerkungs-Screen**
+## **9. Bemerkungs-Screen**
 
 ![img_44.png](img_44.png)
 
@@ -887,7 +887,7 @@ Damit kann man flexibel auf verschiedene Seiten springen, je nach Zahl im Parame
 
 <div style="page-break-before: always;"></div>
 
-## **9. Materialbestellung-Screen**
+## **10. Materialbestellung-Screen**
 
 ![img_48.png](img_48.png)
 
@@ -1164,7 +1164,7 @@ Beim Klick wird nur der Flow `ReminderLieferantenbestaetigungFunktionsaccount.Ru
 
 <div style="page-break-before: always;"></div>
 
-## **10. Mailvorlage-Screen**
+## **11. Mailvorlage-Screen**
 
 ![img_58.png](img_58.png)
 
