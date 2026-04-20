@@ -18,30 +18,95 @@
 
 ## **1. Hinzufuegen einer neuen Person zur PowerApp „Auftragserfassung V2“**
 
-1) Öffnen der `PowerApp`:
+1) **Öffnen der `PowerApp`:**<br><br>
    Zuerst muss die `PowerApp` geöffnet werden. Dazu klickt man in `PowerApp` auf `Apps` und wechselt
    anschliessend zu `Für mich freigegeben`. Dort wählt man die App `Auftragserfassung V2` aus.
    Alternativ kann es sein, dass man direkt in der App landet, wenn man bereits einen direkten Zugriff
-   besitzt.
-2) Neue Person zur `App` freigeben:
+   besitzt.<br><br>
+2) **Neue Person zur `App` freigeben:**<br><br>
    Die neue Person muss zuerst durch eine befugte Person, zum Beispiel den `PowerApp Administrator`
    *Power Admin Laptop*, zur App hinzugefügt werden. Dazu klickt man in der `App-Übersicht` auf das
-   `Share-Symbol` (siehe im Bild). ![alt text](img_76.png)
-   Anschliessend sucht man die neue Person über Namen oder E-Mail-Adresse und legt fest, ob die
-   Person als Benutzer oder Mitbesitzer hinzugefügt wird.
-   Optional kann man auch die neue Person hinzufügen in dem man eine Nachricht in Nachrichtenfeld
-   schreiben kann bei "Fügen Sie eine..."  und dann auf dann auf das "Freigeben" Symbol klicken.
-   • Wird die Person als Benutzer hinzugefügt, ist kein Eintrag im Code notwendig und man muss
-   der Person nur noch Zugriff zum SharePoint erteilen.
-   • Wird die Person als Mitbesitzer hinzugefügt, muss zusätzlich ein Eintrag im OnStart-Code der
-   App erfolgen. Dieser Schritt wird im nächsten Punkt beschrieben. Anschliessend muss auch
-   noch der Zugriff zum SharePoint erteilt werden.
-   • Anbei ein Bild, wo man festlegt, ob man einen Mitbesitzer oder Benutzer einträgt. Für
-   nachträgliche Einträge kann man auch auf "Zugriff verwalten" klicken.
-   • Nachdem die Person eingetragen wurde, kann man auf "link kopieren" klicken und an die neue
-   Person weitergeben. Wichtig: Der Link ersetzt nicht die Berechtigung. Die Person muss zuerst
-   als Benutzer/ Mitbesitzer zur App hinzugefügt worden sein.
+   `Share-Symbol` (siehe im Bild).<br><br>
+![img_80.png](img_80.png)<br>
 
+   Anschliessend sucht man die neue Person über Namen oder E-Mail-Adresse und legt fest, ob die
+   Person als Benutzer oder Mitbesitzer hinzugefügt wird.<br><br>
+
+   Optional kann man auch die neue Person hinzufügen in dem man eine Nachricht in `Nachrichtenfeld`
+   schreiben kann bei `Fügen Sie eine...`  und dann auf dann auf das `Freigeben-Symbol` klicken.<br><br>
+
+   - Wird die Person als `Benutzer` hinzugefügt, ist **kein** Eintrag im Code notwendig und man muss
+   der Person nur noch Zugriff zum SharePoint erteilen.<br>
+   - Wird die Person als `Mitbesitzer` hinzugefügt, **muss zusätzlich** ein Eintrag im `OnStart-Code` der
+   App erfolgen. Dieser Schritt wird im nächsten Punkt beschrieben. Anschliessend muss auch
+   noch der Zugriff zum SharePoint erteilt werden.<br>
+   - Anbei ein Bild, wo man festlegt, ob man einen `Mitbesitzer` oder `Benutzer` einträgt. Für
+   nachträgliche Einträge kann man auch auf `Zugriff verwalten` klicken.<br>
+   - Nachdem die Person eingetragen wurde, kann man auf `link kopieren` klicken und an die neue
+   Person weitergeben.
+   > **Wichtig:** Der Link ersetzt nicht die Berechtigung. Die Person muss zuerst
+   als `Benutzer / Mitbesitzer` zur App hinzugefügt worden sein.
+
+![img_81.png](img_81.png)
+- Hier im Bild wird gezeigt, wie man einstellt, ob man einen neuen `Benutzer` oder `Mitbesitzer` haben
+möchte
+
+3) **Neue Person als `Mitbesitzer` im Code eintragen:**
+   
+   3.1)<br>
+      *Navigation zum richtigen `Code-Bereich`*<br>
+      ➔ Um eine neue Person im Code einzutragen, geht man wie folgt vor:
+   1. In der `Tree View` auf App klicken (Spalte auf der linken Seite).
+   2. Anschliessend öffnen sich die `Properties Seite` auf der rechten Seite.
+   3. Dort muss man in den `Advanced-Bereich` wechseln.
+   4. Unter `Action` muss man auf die Überschrift `OnStart` klicken.
+   5. Dann gibt es einen Code oben, der einklappt ist (siehe im Bild). Da muss man das Fenster
+      runterziehen und hat Einsicht in den Code.
+   ![img_82.png](img_82.png)<br><br>
+   3.2)<br>
+      *Admin-Berechtigung über `gblAdminUserBool`;*<br>
+      Hier muss der Code aufgeklappt werden.
+      Im `OnStart-Code` befindet sich eine Variable mit dem Namen `gblAdminUserBool`. Diese Variable prüft,
+      ob der aktuell angemeldete Benutzer ein Administrator (Mitbesitzer) der App ist. Der Code sieht
+      beispielsweise so aus (siehe im Bild).
+   ![img_83.png](img_83.png)<br><br>
+   
+      Neue Person korrekt ergänzen:
+      - Um eine neue Person als Mitbesitzer hinzuzufügen, wird im
+         bestehenden Code am Ende ergänzt.
+      >In diesem Fall im Bild nach `powerappadmin.ch` in `User().Email()`
+   
+      Die Person wird folgend im Code hinzugefügt:  
+         - *Beispiel:* Neue Person heisst: Max Mustermann  
+         - Man geht in den code und nach `powerappadmin.ch` in `User().Email()` schreibt man
+      >|| "max.mustermann" in User().Email
+
+      und am Ende muss die Klammer zu sein.<br>
+         *➔ Wichtige Regeln für den Code:* Beim Eintragen der neuen Person muss unbedingt Folgendes
+         beachtet werden:
+         - Der Vor- und Nachname **muss** kleingeschrieben werden und in Anführungszeichen stehen.
+         - Nach dem Namen **muss** `in User().Email` stehen.
+         - Die Einträge müssen mit `||` getrennt werden und beim letzten Eintrag darf **kein** `||` stehen.
+         - Die schliessende Klammer am Ende muss vorhanden sein.
+
+
+4) **SharePoint-Berechtigungen vergeben**<br><br>
+   Nachdem die Person im Code eingetragen wurde als `Mitbesitzer` oder `Benutzer`, muss sichergestellt
+   werden, dass sie auch Zugriff auf die `SharePoint-Listen` hat, auf denen die App basiert.<br><br>
+   ➔ Dazu geht man wie folgt vor:
+   1. Die Seite `RC-CH-Workflow – Homepage` öffnen.
+   2. Dort auf `Site Access` klicken (rechts oben).
+   3. Man gibt den Namen der neuen Person ein und klickt sie an.
+      4. Dann kann man wie im Bild auf den kleinen Pfeil klicken und die benötigten Berechtigungen
+         vergeben:
+      > o `Full Control`<br>
+        o `Limited Control` (Edit)<br>
+        o `No Control` (Read)
+      ![img_84.png](img_84.png)
+   5. Neue Benutzer können nur von einer Person mit `Full Control` hinzugefügt werden, zum
+      Beispiel vom `PowerApp Administrator` (Power Admin Laptop).
+   6. Der Zugriff wird über den entsprechenden Link an die neue Person freigegeben.
+   7. Nachdem die Person den Link anklickt, hat sie automatisch die Befugnisse.
 
 ## **1. Grundlagen Powerapps**
 
