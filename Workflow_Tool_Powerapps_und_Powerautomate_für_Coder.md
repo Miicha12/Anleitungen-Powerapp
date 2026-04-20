@@ -2,18 +2,33 @@
 ## **Dokumentation**
 
 ## **Inhalt:**
-1. [Grundlagen Powerapps](#1-grundlagen-powerapps)
-2. [Grundlagen des Einfügens von Elementen](#2-grundlagen-des-einfügens-von-elementen)
-3. [Legende von Properties](#3-legende-von-properties)
-4. [App und Start-Screen](#4-app-und-start-screen)
-5. [Home-Screen](#5-home-screen)
-6. [Auftrag-Screen](#6-auftrag-screen)
-7. [Signierung-Screen](#7-signierung-screen)
-8. [Bemerkung-Screen](#8-bemerkung-screen)
-9. [Materialbestellung-Screen](#9-materialbestellung-screen)
-10. [Mailvorlage-Screen](#10-mailvorlage-screen)
+1. [Hinzufuegen einer neuen Person zur PowerApp „Auftragserfassung V2“](#1-hinzufuegen-einer-neuen-person-zur-powerapp-auftragserfassung-v2)
+2. [Grundlagen Powerapps](#1-grundlagen-powerapps)
+3. [Grundlagen des Einfügens von Elementen](#2-grundlagen-des-einfügens-von-elementen)
+4. [Legende von Properties](#3-legende-von-properties)
+5. [App und Start-Screen](#4-app-und-start-screen)
+6. [Home-Screen](#5-home-screen)
+7. [Auftrag-Screen](#6-auftrag-screen)
+8. [Signierung-Screen](#7-signierung-screen)
+9. [Bemerkung-Screen](#8-bemerkung-screen)
+10. [Materialbestellung-Screen](#9-materialbestellung-screen)
+11. [Mailvorlage-Screen](#10-mailvorlage-screen)
 
 <div style="page-break-before: always;"></div>
+
+## **1. Hinzufuegen einer neuen Person zur PowerApp „Auftragserfassung V2“**
+
+1) Öffnen der `PowerApp`:
+   Zuerst muss die `PowerApp` geöffnet werden. Dazu klickt man in `PowerApp` auf `Apps` und wechselt
+   anschliessend zu `Für mich freigegeben`. Dort wählt man die App `Auftragserfassung V2` aus.
+   Alternativ kann es sein, dass man direkt in der App landet, wenn man bereits einen direkten Zugriff
+   besitzt.
+2) Neue Person zur `App` freigeben:
+   Die neue Person muss zuerst durch eine befugte Person, zum Beispiel den `PowerApp Administrator`
+   *Power Admin Laptop*, zur App hinzugefügt werden. Dazu klickt man in der `App-Übersicht` auf das
+   `Share-Symbol` (siehe im Bild). ![alt text](img_76.png)
+3) 
+
 
 ## **1. Grundlagen Powerapps**
 
