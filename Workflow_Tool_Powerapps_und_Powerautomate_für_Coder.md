@@ -101,8 +101,8 @@ möchte
          vergeben:
       > o `Full Control`<br>
         o `Limited Control` (Edit)<br>
-        o `No Control` (Read)
-      ![img_84.png](img_84.png)
+        o `No Control` (Read)<br><br>
+      <img src="img_84.png" alt="img_84.png" style="width:200px;"/>
    5. Neue Benutzer können nur von einer Person mit `Full Control` hinzugefügt werden, zum
       Beispiel vom `PowerApp Administrator` (Power Admin Laptop).
    6. Der Zugriff wird über den entsprechenden Link an die neue Person freigegeben.
