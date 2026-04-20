@@ -27,7 +27,20 @@
    Die neue Person muss zuerst durch eine befugte Person, zum Beispiel den `PowerApp Administrator`
    *Power Admin Laptop*, zur App hinzugefügt werden. Dazu klickt man in der `App-Übersicht` auf das
    `Share-Symbol` (siehe im Bild). ![alt text](img_76.png)
-3) 
+   Anschliessend sucht man die neue Person über Namen oder E-Mail-Adresse und legt fest, ob die
+   Person als Benutzer oder Mitbesitzer hinzugefügt wird.
+   Optional kann man auch die neue Person hinzufügen in dem man eine Nachricht in Nachrichtenfeld
+   schreiben kann bei "Fügen Sie eine..."  und dann auf dann auf das "Freigeben" Symbol klicken.
+   • Wird die Person als Benutzer hinzugefügt, ist kein Eintrag im Code notwendig und man muss
+   der Person nur noch Zugriff zum SharePoint erteilen.
+   • Wird die Person als Mitbesitzer hinzugefügt, muss zusätzlich ein Eintrag im OnStart-Code der
+   App erfolgen. Dieser Schritt wird im nächsten Punkt beschrieben. Anschliessend muss auch
+   noch der Zugriff zum SharePoint erteilt werden.
+   • Anbei ein Bild, wo man festlegt, ob man einen Mitbesitzer oder Benutzer einträgt. Für
+   nachträgliche Einträge kann man auch auf "Zugriff verwalten" klicken.
+   • Nachdem die Person eingetragen wurde, kann man auf "link kopieren" klicken und an die neue
+   Person weitergeben. Wichtig: Der Link ersetzt nicht die Berechtigung. Die Person muss zuerst
+   als Benutzer/ Mitbesitzer zur App hinzugefügt worden sein.
 
 
 ## **1. Grundlagen Powerapps**
