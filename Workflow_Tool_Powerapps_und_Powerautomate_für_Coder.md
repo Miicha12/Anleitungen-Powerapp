@@ -63,6 +63,9 @@ möchte
    5. Dann gibt es einen Code oben, der einklappt ist (siehe im Bild). Da muss man das Fenster
       runterziehen und hat Einsicht in den Code.
    ![img_82.png](img_82.png)<br><br>
+
+   <div style="page-break-before: always;"></div>
+
    3.2)<br>
       *Admin-Berechtigung über `gblAdminUserBool`;*<br>
       Hier muss der Code aufgeklappt werden.
@@ -89,6 +92,7 @@ möchte
          - Die Einträge müssen mit `||` getrennt werden und beim letzten Eintrag darf **kein** `||` stehen.
          - Die schliessende Klammer am Ende muss vorhanden sein.
 
+<div style="page-break-before: always;"></div>
 
 4) **SharePoint-Berechtigungen vergeben**<br><br>
    Nachdem die Person im Code eingetragen wurde als `Mitbesitzer` oder `Benutzer`, muss sichergestellt
@@ -107,6 +111,8 @@ möchte
       Beispiel vom `PowerApp Administrator` (Power Admin Laptop).
    6. Der Zugriff wird über den entsprechenden Link an die neue Person freigegeben.
    7. Nachdem die Person den Link anklickt, hat sie automatisch die Befugnisse.
+
+<div style="page-break-before: always;"></div>
 
 ## **2. Grundlagen Powerapps**
 
